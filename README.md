@@ -15,6 +15,8 @@ Este proyecto esta desarrollado en Angular, version 13, basado en Node, version 
 ## Comandos básicos 
 1. Para iniciar el proyecto en modo desarrollo:
 ```ng serve```
+1. Para correr linter:
+```ng lint```
 ## Estilos
 Los estilos estan basados en scss y bootstrap version 5
 
@@ -33,6 +35,14 @@ Iconos:
 - ![#004A44](https://via.placeholder.com/15/004A44/000000?text=+) `#004A44`
 - ![#004A44](https://via.placeholder.com/15/004A44/000000?text=+) `#004A44`
 - ![#F5C302](https://via.placeholder.com/15/F5C302/000000?text=+) `#F5C302`
+
+## Linter
+Es una herramienta que permite establecer diferentes reglas, para estandarizar el código, y crear una consistencia a lo largo de su desarrollo. 
+
+Para correr eslint: 
+```ng lint```
+
+
 
 ## Servicios
 aqui van los servicios
