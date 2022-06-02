@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-discard',
   templateUrl: './discard.component.html',
   styleUrls: ['./discard.component.scss']
 })
-export class DiscardComponent implements OnInit {
+export class DiscardComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

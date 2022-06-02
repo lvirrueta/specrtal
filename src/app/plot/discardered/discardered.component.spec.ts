@@ -9,8 +9,7 @@ describe('DiscarderedComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ DiscarderedComponent ]
-    })
-    .compileComponents();
+    }).compileComponents();
   });
 
   beforeEach(() => {
