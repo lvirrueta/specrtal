@@ -39,10 +39,8 @@ Iconos:
 ## Linter
 Es una herramienta que permite establecer diferentes reglas, para estandarizar el código, y crear una consistencia a lo largo de su desarrollo. 
 
-Para correr eslint: 
+Para correr linter: 
 ```ng lint```
-
-
 
 ## Servicios
 aqui van los servicios
