@@ -1,27 +1,46 @@
 # SpectralTools
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.5.
+## Objetivo
+Construir un sistema capaz de analizar parcelas, obtener su etapa 
+fonológica, y su firma espectral a través de una imagen satelital.
 
-## Development server
+## Introduccion
+Se analizarán las parcelas que alguna vez tuvieron observación no comprobada de plaga, que a partir de la selección de al menos 5 pixeles, obtenga una firma espectral de la plaga y etapa fenológica para cada polígono De los puntos a seleccionar 1 será seleccionado de forma automática(Ubicación), este punto será utilizado para la firma espectral de la plaga, mientras que los puntos restantes serán utilizados para la firma de la etapa fenológica.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Podrá darse el caso de que algún punto de ubicación sea errónea, en este caso deberá eliminarse, mientras que si la imagen satelital obtenida no cuenta con las condiciones climáticas aptas para su análisis deberá descartarse.
 
-## Code scaffolding
+## Entorno de desarrollo
+Este proyecto esta desarrollado en Angular, version 13, basado en Node, version 16 y su gestor de paquete es NPM, version 8 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Comandos básicos 
+1. Para iniciar el proyecto en modo desarrollo:
+```ng serve```
+## Estilos
+Los estilos estan basados en scss y bootstrap version 5
 
-## Build
+### Paleta de Colores
+Titulos: 
+- ![#00937F](https://via.placeholder.com/15/00937F/000000?text=+) `#00937F`
+- ![#F5C302](https://via.placeholder.com/15/F5C302/000000?text=+) `#F5C302`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Alertas:
+- ![#F5C302](https://via.placeholder.com/15/F5C302/000000?text=+) `#F5C302`
+- ![#F55353](https://via.placeholder.com/15/F55353/000000?text=+) `#F55353`
+- ![#00937F](https://via.placeholder.com/15/00937F/000000?text=+) `#00937F`
 
-## Running unit tests
+Iconos:
+- ![#006E61](https://via.placeholder.com/15/006E61/000000?text=+) `#006E61`
+- ![#004A44](https://via.placeholder.com/15/004A44/000000?text=+) `#004A44`
+- ![#004A44](https://via.placeholder.com/15/004A44/000000?text=+) `#004A44`
+- ![#F5C302](https://via.placeholder.com/15/F5C302/000000?text=+) `#F5C302`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Servicios
+aqui van los servicios
 
-## Running end-to-end tests
+#### Interceptors
+aqui van los interceptores
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+#### Modulos
+aqui van los modulos
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
