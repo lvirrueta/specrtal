@@ -1,0 +1,13 @@
+/* HTML Labels */
+a {
+    color: var(--emphasis-font-color);
+    font-family: 'arial', 'Helvetica Neue', sans-serif;
+    font-size: 1rem;
+    line-height: 1.1rem;
+    cursor: pointer;
+}
+a:hover, a:focus {
+    text-decoration: underline;
+    color: var(--emphasis-font-color);
+}
+/* END HTML Labels */
