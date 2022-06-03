@@ -1,0 +1,72 @@
+/* Modals genearl style*/
+.swal-popup-general {
+    border-radius: 20px 20px 20px 20px !important;
+    padding-top: 15px !important;
+    max-width: 400px !important;
+}
+
+.swal-popup-weather {
+    border-radius: 20px 20px 20px 20px !important;
+    padding-top: 15px !important;
+    min-width: 600px !important;
+}
+.popup-class {
+    border-radius: 20px 20px 20px 20px !important;
+    padding-top: 15px !important;
+    max-width: 400px !important;
+    border-top: 15px solid var(--color-info2) !important;
+}
+
+.btn-acep {
+    display: flex !important;
+    background-color: var(--color-info2) !important;
+    color: var(--color-white) !important;
+    font-weight: bold !important;
+    border: var(--constrast-background-color) solid 0.15rem !important; 
+    transition: all .35s !important;
+}
+
+.btn-cancel {
+    display: flex !important;
+    background-color: var(--background-color) !important;
+    color: var(--color-main4) !important;
+    font-weight: bold !important;
+    border: var(--constrast-background-color) solid 0.15rem !important; 
+    transition: all .35s !important;
+}
+.container-calendar-start-crop {
+    border-radius: 20px 20px 20px 20px !important;
+    padding-top: 15px !important;
+    max-width: 400px !important;
+    min-height: 350px !important;
+}
+
+.validation-msg {
+    background-color: var(--color-main6) !important;
+}
+
+.swal2-inputerror {
+    border: 2px solid var(--color-danger2) !important;
+}
+
+.container-calendar-irrigation {
+    border-radius: 20px 20px 20px 20px !important;
+    padding-top: 15px !important;
+    max-width: 400px !important;
+    min-height: 550px !important;
+}
+
+.container-calendar-nutrition {
+    border-radius: 20px 20px 20px 20px !important;
+    padding-top: 15px !important;
+    max-width: 400px !important;
+    min-height: 650px !important;
+}
+
+.container-calendar-pest {
+    border-radius: 20px 20px 20px 20px !important;
+    padding-top: 15px !important;
+    max-width: 400px !important;
+    min-height: 690px !important;
+}
+/* END Modals genearl style*/

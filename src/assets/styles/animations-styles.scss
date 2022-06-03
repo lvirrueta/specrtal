@@ -1,0 +1,250 @@
+/* TOP fade */
+@keyframes top-fadein-keyframes {
+    0% {
+        height: 0;
+        overflow: hidden;
+        opacity: 0;
+    }
+    1% {
+        height: auto;
+    }
+    100% {
+        height: auto;
+        overflow: auto;
+        opacity: 1;
+    }
+}
+.top-fadein-animation {
+    animation-name: top-fadein-keyframes;
+    animation-duration: 1s;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    position: relative;
+}
+
+
+/* Left fade */
+@keyframes left-fadein-keyframes {
+    0% {
+        height: 0;
+        overflow: hidden;
+        right: 15rem;
+        opacity: 0;
+    }
+    1% {
+        height: auto;
+    }
+    100% {
+        height: auto;
+        overflow: auto;
+        right: 0rem;
+        opacity: 1;
+    }
+}
+.left-fadein-animation {
+    animation-name: left-fadein-keyframes;
+    animation-duration: 0.5s;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    position: relative;
+}
+
+@keyframes left-fadeout-keyframes {
+    0% {
+        height: auto;
+        overflow: auto;
+        right: 0rem;
+        opacity: 1;
+    }
+    99% {
+        height: auto;
+    }
+    100% {
+        height: 0;
+        overflow: hidden;
+        right: 15rem;
+        opacity: 0;
+    }
+}
+.left-fadeout-animation {
+    animation-name: left-fadeout-keyframes;
+    animation-duration: 0.5s;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    position: relative;
+}
+/* END Left fade */
+
+
+
+/* Right fade */
+@keyframes right-fadein-keyframes {
+    0% {
+        height: 0;
+        overflow: hidden;
+        left: 15rem;
+        opacity: 0;
+    }
+    1% {
+        height: auto;
+    }
+    100% {
+        height: auto;
+        overflow: auto;
+        left: 0rem;
+        opacity: 1;
+    }
+}
+.right-fadein-animation {
+    animation-name: right-fadein-keyframes;
+    animation-duration: 0.5s;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    position: relative;
+}
+
+@keyframes right-fadeout-keyframes {
+    0% {
+        height: auto;
+        overflow: auto;
+        left: 0rem;
+        opacity: 1;
+    }
+    99% {
+        height: auto;
+    }
+    100% {
+        height: 0;
+        overflow: hidden;
+        left: 15rem;
+        opacity: 0;
+    }
+}
+.right-fadeout-animation {
+    animation-name: right-fadeout-keyframes;
+    animation-duration: 0.5s;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    position: relative;
+}
+/* END Right fade */
+
+
+
+/* Left traveling */
+@keyframes left-traveling-in-keyframes {
+    0% {
+        opacity: 0;
+        right: 50vw;
+    }
+    100% {
+        opacity: 1;
+        right: 0rem;
+    }
+}
+.left-traveling-in-animation {
+    animation-name: left-traveling-in-keyframes;
+    animation-duration: 0.5s;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes left-traveling-out-keyframes {
+    0% {
+        opacity: 1;
+        right: 0rem;
+    }
+    100% {
+        opacity: 0;
+        right: 50vw;
+    }
+}
+.left-traveling-out-animation {
+    animation-name: left-traveling-out-keyframes;
+    animation-duration: 0.5s;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    position: relative;
+    z-index: 1;
+}
+/* END Left traveling */
+
+
+
+/* Right traveling */
+@keyframes right-traveling-in-keyframes {
+    0% {
+        opacity: 0;
+        left: 50vw;
+    }
+    100% {
+        opacity: 1;
+        left: 0rem;
+    }
+}
+.right-traveling-in-animation {
+    animation-name: right-traveling-in-keyframes;
+    animation-duration: 0.5s;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes right-traveling-out-keyframes {
+    0% {
+        opacity: 1;
+        left: 0rem;
+    }
+    100% {
+        opacity: 0;
+        left: 50vw;
+    }
+}
+.right-traveling-out-animation {
+    animation-name: right-traveling-out-keyframes;
+    animation-duration: 0.5s;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    position: relative;
+    z-index: 1;
+}
+/* END Right traveling */
+
+
+
+/* invisible */
+@keyframes invisible-keyframes {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+.invisible-animation {
+    animation-name: invisible-keyframes;
+    animation-duration: 0.5s;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    position: relative;
+}
+
+@keyframes visible-keyframes {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.visible-animation {
+    animation-name: visible-keyframes;
+    animation-duration: 0.5s;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    position: relative;
+}
+/* END invisible */

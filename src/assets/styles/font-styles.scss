@@ -1,0 +1,102 @@
+/* Fonts */
+@font-face {
+    font-family: 'Roboto-Regular';
+    src: url("../fonts/Roboto-Regular.ttf");
+}
+
+.roboto-font-0 {
+    font-family: 'Roboto-Regular', 'Helvetica Neue', sans-serif;
+    font-size: 2.5rem;
+    line-height: 2.6rem;
+}
+
+.roboto-font-1 {
+    font-family: 'Roboto-Regular', 'Helvetica Neue', sans-serif;
+    font-size: 2rem;
+    line-height: 2.1rem;
+}
+
+.roboto-font-2 {
+    font-family: 'Roboto-Regular', 'Helvetica Neue', sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.7rem;
+}
+
+.roboto-font-3 {
+    font-family: 'Roboto-Regular', 'Helvetica Neue', sans-serif;
+    font-size: 1.3rem;
+    line-height: 1.4rem;
+}
+
+.roboto-font-4 {
+    font-family: 'Roboto-Regular', 'Helvetica Neue', sans-serif;
+    font-size: 1rem;
+    line-height: 1.1rem;
+}
+
+.roboto-font-5 {
+    font-family: 'Roboto-Regular', 'Helvetica Neue', sans-serif;
+    font-size: 0.9rem;
+    line-height: 1rem;
+}
+
+.roboto-font-6 {
+    font-family: 'Roboto-Regular', 'Helvetica Neue', sans-serif;
+    font-size: 0.8rem;
+    line-height: 0.8rem;
+}
+/* END Fonts */
+
+/* Font colors */
+.font-color-main-strong {
+    color: var(--color-main1) !important;
+}
+
+.font-color-main {
+    color: var(--color-main3) !important;
+}
+
+.font-color-main-smoth {
+    color: var(--color-main5) !important;
+}
+
+.font-color-success {
+    color: var(--color-success2) !important;
+}
+
+.font-color-warning {
+    color: var(--color-warning2) !important;
+}
+
+.font-color-danger {
+    color: var(--color-danger2) !important;
+}
+
+.font-color-danger-2 {
+    color: var(--color-danger3) !important;
+}
+
+.font-color-info {
+    color: var(--color-info2) !important;
+}
+
+.font-color-black {
+    color: var(--color-black) !important;
+}
+
+.font-color-white {
+    color: var(--color-white) !important;
+}
+
+.font-color-gray {
+    color: var(--color-gray2) !important;
+}
+
+.primary-font-color {
+    color: var(--primary-font-color);
+}
+
+.font-color-emphasis {
+    color: var(--color-emphasis) !important;
+}
+/* END Font colors */
