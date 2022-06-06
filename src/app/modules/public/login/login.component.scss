@@ -1,0 +1,70 @@
+/* Generals */
+@media screen and (max-width: '991px') {
+    .background-color-constrast {
+        background-color: var(--background-color);
+    }
+}
+
+.max-content {
+    width: max-content;
+}
+/* END Generals */
+
+
+
+/* Login */
+.login-background {
+    background-image: url('/assets/img/public/login/parcela2.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    position: initial;
+    z-index: 0;
+}
+@media screen and (min-width: '768px') {
+    .login-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+}
+@media screen and (min-width: '991px') {
+    .login-background {
+        position: initial;
+        z-index: 0;
+    }
+}
+
+.login-card {
+    position: initial;
+    width: auto;
+    z-index: 0;
+}
+@media screen and (min-width: '768px') {
+    .login-card {
+        border-radius: 42px;
+        position: fixed;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        z-index: 1;
+        width: 20rem;
+        background-color: var(--background-color);
+        box-shadow: 0px 0px 15px #00000008;
+    }
+}
+@media screen and (min-width: '991px') {
+    .login-card {
+        border-radius: 42px;
+        position: relative;
+        left: 7.5rem;
+        z-index: 1;
+        width: 20rem;
+        background-color: var(--background-color);
+        box-shadow: 0px 0px 15px #00000008;
+    }
+}
+/* END Login */
