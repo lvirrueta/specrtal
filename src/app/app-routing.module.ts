@@ -1,17 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+// Guards
 import { notLoggedGuard } from './core/guards/home/not-logged.guard';
+import { UserGuard } from './core/guards/user/user.guard';
 
 const routes: Routes = [
   {
     path: '',
-    canActivate: [notLoggedGuard],
-    loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
+    loadChildren: () => import('../app/modules/public/public.module').then(m => m.PublicModule)
   },
   {
-    path: '',
-    canActivate: [notLoggedGuard],
-    loadChildren: () => import('./modules/plot/plot.module').then(m => m.PlotModule)
+    path: 'user',
+    loadChildren: () => import('../app/modules/user/user.module').then(m => m.UserModule)
+  },
+  {
+    path: '**',
+    redirectTo: ''
   },
 ];
 

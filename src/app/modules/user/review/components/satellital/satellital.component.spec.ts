@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DiscardComponent } from './discard.component';
+import { SatellitalComponent } from './satellital.component';
 
-describe('DiscardComponent', () => {
-  let component: DiscardComponent;
-  let fixture: ComponentFixture<DiscardComponent>;
+describe('SatellitalComponent', () => {
+  let component: SatellitalComponent;
+  let fixture: ComponentFixture<SatellitalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DiscardComponent ]
+      declarations: [ SatellitalComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DiscardComponent);
+    fixture = TestBed.createComponent(SatellitalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
