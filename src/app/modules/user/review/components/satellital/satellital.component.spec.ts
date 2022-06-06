@@ -9,8 +9,7 @@ describe('SatellitalComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ SatellitalComponent ]
-    })
-    .compileComponents();
+    }).compileComponents();
   });
 
   beforeEach(() => {
