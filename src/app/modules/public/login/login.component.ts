@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -7,6 +8,26 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
 
-  constructor() { }
+  public LOGINFORMGROUP!: FormGroup;
+
+  constructor(
+    private formBuilder: FormBuilder,
+  ) { }
+
+  ngOnInit(): void {
+    this.initLoginFormGroup();
+  }
+
+  private initLoginFormGroup(): void {
+    this.LOGINFORMGROUP = this.formBuilder.group({
+      email: [ null, [ Validators.required, Validators.email ] ],
+      password: [ null, [ Validators.required ] ]
+    });
+  }
+
+  public async loginSubmit(): Promise<void> {
+    console.log(this.LOGINFORMGROUP);
+  }
 
 }
+
