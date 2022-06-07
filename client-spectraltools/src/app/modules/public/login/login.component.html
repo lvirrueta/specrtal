@@ -1,0 +1,79 @@
+<!-- Login -->
+<div class="row g-0 justify-content-center align-items-center background-color-constrast">
+
+
+    <!-- Login form -->
+    <div class="col-11 col-lg-4 col-xl-3 col-xxl-2">
+    
+        <form  [formGroup]="LOGINFORMGROUP" (ngSubmit)="loginSubmit()" >
+            <div class="row g-0 p-5 login-card mt-0 mt-md-5 mt-lg-0">
+
+                <!-- Welcome -->
+                <div class="col-12">
+                    <b class="font-color-main roboto-font-3">
+                        Bienvenido
+                    </b>
+                </div>
+                <!-- END Welcome -->
+
+                <!-- Instructions -->
+                <div class="col-12 mt-3">
+                    <span class="roboto-font-4 font-color-gray">
+                        Ingresa tus credenciales
+                    </span>
+                </div>
+                <!-- END Instructions -->
+
+                <!-- Email -->
+                <div class="col-12 mt-5">
+                    <input type="text" class="form-control" placeholder="correo@correo.com" formControlName = "email" >
+                </div>
+                <!-- END Email -->
+
+                
+                <!-- Password -->
+                <div class="col-12 mt-4">
+                    <input type="password" class="form-control" placeholder="********" formControlName = "password" >
+
+                </div>
+                <!-- END Password -->
+
+
+                <!-- Enter -->
+                <div class="col-12 mt-5 mb-3">
+                    <div class="row g-0">
+                        <button class="btn-main-strong">
+                            <i class="fa-solid fa-arrow-right-long font-color-white"></i>
+                            inicia sesion
+                        </button>
+                    </div>
+                </div>
+                <!-- END Enter -->
+
+                <!-- Forgot password -->
+                <!-- <div class="col-12 mt-5 text-center">
+                    <span class="roboto-font-4">
+                        Olvide mi
+                    </span>
+                    <a class="roboto-font-4">
+                        Contraseña
+                    </a>
+                </div> -->
+                <!-- END Forgot password -->
+
+            </div>
+        </form>
+    </div>
+    <!-- END Login form -->
+
+
+    <!-- Login background -->
+    <div class="col-12 col-lg-8 col-xl-9 col-xxl-10 d-none d-md-block login-background"
+    ></div>
+    <!-- END Login background -->
+
+
+</div>
+<!-- END Login -->
+
+

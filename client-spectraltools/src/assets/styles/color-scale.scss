@@ -1,0 +1,75 @@
+/* Light Theme */
+body {
+    --color-scheme: light;
+    --color-main1:#046C4C;
+    --color-main2:#F5C302;
+    --color-main3:#00937F;
+    --color-main4:#C0DAD2;
+    --color-main5:#C0DAD2;
+    --color-main6:#035139;
+    --color-main6:#023626;
+    --color-success1:#005121;
+    --color-success2:#006529;
+    --color-success3:#66A37F;
+    --color-warning1:#DD9300;
+    --color-warning2:#F5A300;
+    --color-warning3:#F5C302;
+    --color-danger1:#87141A;
+    --color-danger2:#A60303;
+    --color-danger3:#CB757A;
+    --color-info1:#334E68;
+    --color-info2:#627D98;
+    --color-info3:#9FB3C8;
+    --color-gray1:#737373;
+    --color-gray2:#A5A5A5;
+    --color-gray3:#AFAFAF;
+    --color-gray4:#EBEBEB;
+    --color-gray5:#F7F7F7;
+    --color-black:black;
+    --color-white:white;
+    --background-color:#F7F7F7;
+    --constrast-background-color:#EBEBEB;
+    --high-constrast-background-color:white;
+    --primary-font-color:#222222;
+    --placeholder-color:#AFAFAF;
+    --emphasis-font-color:#008070;
+}
+/* END Light Theme */
+
+
+/* Dark Theme */
+body.dark-theme {
+    --color-scheme:dark;
+    --color-main1:#421f1f;
+    --color-main2:#f8cdd5;
+    --color-main3:#701e45;
+    --color-main4:#6e4359;
+    --color-main5:#7a5366;
+    --color-main6:#DEEDEB;
+    --color-success1:#005121;
+    --color-success2:#006529;
+    --color-success3:#66A37F;
+    --color-warning1:#DD9300;
+    --color-warning2:#F5C302;
+    --color-warning3:#F5C302;
+    --color-danger1:#E53935;
+    --color-danger2:#F44336;
+    --color-danger3:#EF5350;
+    --color-info1:#334E68;
+    --color-info2:#627D98;
+    --color-info3:#9FB3C8;
+    --color-gray1:#737373;
+    --color-gray2:#A5A5A5;
+    --color-gray3:#AFAFAF;
+    --color-gray4:#BABABA;
+    --color-gray5:#E7E7E7;
+    --color-black:black;
+    --color-white:white;
+    --background-color: #222222;
+    --constrast-background-color: #555555;
+    --high-constrast-background-color:black;
+    --primary-font-color: white;
+    --placeholder-color: #AFAFAF;
+    --emphasis-font-color: orange;
+}
+/* END Dark Theme */
