@@ -9,7 +9,7 @@
 .navbar {
     grid-column: 2/12;
     grid-row: 1;
-    background-color: var(--color-gray4);
+    background-color: var(--color-white);
     padding: 0.6% 0.5%;
     margin: 0;
 }
@@ -24,6 +24,6 @@
 .main {
     grid-column: 2/12;
     grid-row: 2;
-    background-color: var(--color-gray5);
+    background-color: var(--color-gray4);
     padding: 3% 5%;
 }
