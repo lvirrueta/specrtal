@@ -19,7 +19,7 @@ export class notLoggedGuard implements CanActivate {
       return true;
     } else {
       this.routesService.link2(
-        this.routesService.routes.user.home
+        this.routesService.routes.user.home.main
       );
       return false;
     }

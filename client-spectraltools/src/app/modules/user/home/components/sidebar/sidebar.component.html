@@ -1,9 +1,56 @@
-<div class="sidebar">
-    <p style="margin:75px 50px" >aqui va el logo</p>
-    <ul>
-        <li>aqui van datos</li>
-        <li>aqui van datos</li>
-        <li>aqui van datos</li>
-        <li>aqui van datos</li>
-    </ul>
+<div class="sidebar container">
+    <div class="col-12 py-3 py-xl-4 border-bottom">
+        <div class="logo" [routerLink]="[routesService.routes.user.home.main]">
+            <img src="../../../../../../assets/img/public/logo/logo-white.svg" alt="" width="150" height="">
+        </div>
+    </div>
+    <!-- <a class="logo" [routerLink]="[routesService.routes.user.home.main]">
+    </a> -->
+
+
+    <!-- User menu -->
+    <div class="col-10 cursor-pointer">
+        <div class="row g-0 align-items-center">
+
+            <!-- Item Review -->
+            <div class="row g-0 btn-container py-2 align-items-center cursor-poiter" (click)="link2route('/user/review')">
+                <div class="col-auto px-2 cursor-poiter font-color-white">
+                    <i class="fa-solid fa-file-pen"></i>
+                </div>
+                <div class="col cursor-poiter">
+                    <span class="roboto-font-4 font-color-white">
+                        Registro
+                    </span>
+                </div>
+            </div>
+            <!-- END Item Review -->
+
+
+            <!-- Item Discardered -->
+            <div class="row g-0 btn-container py-2 align-items-center cursor-poiter" (click)="link2route('/user/discardered')">
+                <div class="col-auto px-2 cursor-poiter font-color-white">
+                    <i class="fa-solid fa-trash"></i>
+                </div>
+                <div class="col cursor-poiter">
+                    <span class="roboto-font-4 font-color-white">
+                        Descartados
+                    </span>
+                </div>
+            </div>
+            <!-- END Item Discardered -->
+
+            <!-- Logout -->
+            <div class="col-12 py-2 py-xl-4 align-items-center">
+                <button class="btn-main-strong" (click)="logoutRequest()">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span> Cerrar sesión</span>
+                </button>
+            </div>
+            <!-- END Logout -->
+
+        </div>
+    </div>
+    <!-- END User menu -->
+
+
 </div>
