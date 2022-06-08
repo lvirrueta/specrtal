@@ -7,13 +7,13 @@ import { MainComponent } from '../main/main.component';
 
 
 const routes: Routes = [
-  { path: '', 
+  { path: '',
     component: HomeComponent,
     children: [
-      { path: 'main', component: MainComponent },
+      { path: '', component: MainComponent },
       { path: 'review', component: ReviewComponent },
       { path: 'discardered', component: DiscarderedComponent },
-      { path: '**', pathMatch: 'full', redirectTo: 'main' },
+      { path: '**', pathMatch: 'full', redirectTo: '' },
     ]
   },
 ];

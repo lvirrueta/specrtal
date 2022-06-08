@@ -1,1 +1,133 @@
-<p>points works!</p>
+<!-- Emply data alert -->
+<div class="row g-0 alert-container2 align-items-center justify-content-center" *ngIf="points.length === 0">
+
+    <div class="col-12 text-center">
+        <b class="roboto-font-3">
+            No hay datos
+        </b>
+        <br><br>
+    </div>
+</div>
+<!-- END Emply data alert -->
+
+
+<!-- Table container -->
+<div class="row g-0 justify-content-between">
+
+
+    <!-- Create button -->
+    <div class="btn-contain">
+        <div class="btn-create">
+            <button class="btn-main-soft btn-success" (click)="savePoint()">
+                <i class="fa-solid fa-plus"></i>
+                Crear
+            </button>
+        </div>
+    </div>
+    <!-- END Create button -->
+
+
+    <!-- Table -->
+    <div class="col-12 mt-5 mb-4 table-container">
+        <table>
+
+            <!-- Header -->
+            <tr text-center>
+                <th><span class="roboto-font-4 font-color-gray">
+                    Id
+                </span></th>
+                <th></th>
+                <th></th>
+
+                <th><span class="roboto-font-4 font-color-gray">
+                    Longitud
+                </span></th>
+                <th></th>
+                <th></th>
+                <th><span class="roboto-font-4 font-color-gray">
+                    Latitud
+                </span></th>
+                <th></th>
+                <th></th>
+
+                <th><span class="roboto-font-4 font-color-gray">
+                    Acciones
+                </span></th>
+                <th></th>
+                <th></th>
+            </tr>
+            <!-- END Header -->
+
+
+            <!-- Body -->
+            <tr *ngFor="let point of points">
+
+
+                <!-- point id -->
+                <td class="first-element">
+                    <b class="roboto-font-5">{{point.id}}</b>
+                </td>
+                <!-- END point id -->
+                <td></td>
+                <td></td>
+
+
+                <!-- Longitude -->
+                <td>
+                    <b class="roboto-font-5">{{point.longitude}}</b>
+                </td>
+                <!-- END Longitude -->
+
+                <td></td>
+                <td></td>
+
+                <!-- Latitude -->
+                <td>
+                    <b class="roboto-font-5">{{point.latitude}}</b>
+                </td>
+                <!-- END Latitude -->
+                <td></td>
+                <td></td>
+
+                <!-- Delete -->
+                <td>
+                    <div>
+                        <button class="btn-main btn-danger" (click)="deletePoint(point.id)">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </td>
+                <!-- END Delete -->
+                <td></td>
+                <td></td>
+            </tr>
+            <!-- END Body -->
+
+
+        </table>
+    </div>
+    <!-- END Table -->
+
+
+    <!-- Discard button -->
+    <div class="btn-contain">
+        <div class="btn-delete">
+            <button class="btn-main-soft btn-warning" (click)="discardPoint()">
+                <i class="fa-solid fa-circle-xmark"></i>
+                 Descartar
+            </button>
+        </div>
+
+
+        <div class="btn-create">
+            <button class="btn-main-soft btn-success" (click)="savePoints()">
+                <i class="fa-solid fa-floppy-disk"></i>
+                 Guardar
+            </button>
+        </div>
+    </div>
+    <!-- END Discard button -->
+
+
+</div>
+<!-- END Table container -->

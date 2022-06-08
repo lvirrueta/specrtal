@@ -1,1 +1,36 @@
-<p>info works!</p>
+<div class="row g-0 event-container my-2" *ngIf="cropInformation">
+
+    <!-- Title -->
+    <div class="col-12 py-3 ps-3">
+        <b class="roboto-font-3">
+            Información
+        </b>
+    </div>
+    <!-- END Title -->
+
+
+    <!-- crop -->
+    <div class="col-6 ps-3 mt-2">
+        <span class="roboto-font-4 font-color-gray">
+            Cultivo:
+        </span>
+        <b class="roboto-font-4">
+            {{cropInformation.typecrop}}
+        </b>
+    </div>
+    <!-- END crop -->
+
+
+    <!-- phenological stage -->
+    <div class="col-6 ps-3 mt-2">
+        <span class="roboto-font-4 font-color-gray">
+            Etapa fenológica:
+        </span>
+        <b class="roboto-font-4">
+            {{cropInformation.phenologicStage}}
+        </b>
+    </div>
+    <!-- END phenological stage -->
+
+
+</div>

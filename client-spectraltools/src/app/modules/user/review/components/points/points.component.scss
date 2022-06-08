@@ -1,0 +1,59 @@
+/* Table */
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    border-collapse: collapse;
+    min-width: 65rem;
+    width: 90%;
+    margin: auto;
+}
+
+th {
+    font-weight: normal;
+    text-align: left;
+    padding: 0.5rem 1rem;
+}
+
+tr {
+    border-bottom: 0.1rem solid var(--color-gray4);
+}
+
+td {
+    padding: 0.5rem 1rem;
+    max-width: 15rem;
+    word-wrap: break-word;
+}
+
+.first-element {
+    border-left: 0.25rem solid var(--color-main1);
+}
+
+.disabled-background {
+    background-color: var(--color-gray4);
+}
+
+
+/* END Table */
+
+
+/* buttons */
+
+.btn-contain {
+    position: relative;
+}
+
+.btn-create {
+    position: absolute;
+    left: 85%;
+}
+
+.btn-delete {
+    position: absolute;
+    right: 85%;
+}
+
+
+/* END buttons */

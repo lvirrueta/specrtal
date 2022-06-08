@@ -81,7 +81,7 @@ export class AuthService {
   }   
   
   public closeSession():void {
-    this.routesService.link2(this.routesService.routes.public.sigin);
+    this.routesService.link2(this.routesService.routes.public.login);
     this.storageService.clearLocalStorage();
     this.storageService.clearSessionStorage();
   }
