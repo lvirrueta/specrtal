@@ -16,7 +16,7 @@ import { AuthModule } from './auth/auth.module';
       username: 'postgres',
       password: 'MxoNSOJRhJfF0Rv7CvwJcCefkzaasrtj',
       database: 'spectral-tools',
-      entities: [ (__dirname + '/**/*.entity{.ts,.js}') ],
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: false,
     }),
     AuthModule,
