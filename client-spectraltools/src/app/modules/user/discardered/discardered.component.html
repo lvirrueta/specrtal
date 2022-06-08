@@ -1,1 +1,110 @@
-<p>discardered works!</p>
+<!-- Emply data alert -->
+<div class="row g-0 alert-container2 align-items-center justify-content-center" *ngIf="points.length === 0">
+
+    <div class="col-12 text-center">
+        <b class="roboto-font-3">
+            No hay datos
+        </b>
+        <br><br>
+    </div>
+</div>
+<!-- END Emply data alert -->
+
+
+<!-- Table container -->
+<div class="row g-0 justify-content-between align-items-center">
+
+
+    <!-- Table -->
+    <div class="col-12 mt-5 mb-4 table-container text-center">
+        <table>
+
+            <!-- Header -->
+            <tr text-center>
+                <th>
+                    <span class="roboto-font-4 font-color-gray">
+                        Id
+                    </span>
+                </th>
+                <th></th>
+                <th></th>
+
+                <th>
+                    <span class="roboto-font-4 font-color-gray">
+                        Longitud
+                    </span>
+                </th>
+
+                <th></th>
+                <th></th>
+                <th>
+                    <span class="roboto-font-4 font-color-gray">
+                        Latitud
+                    </span>
+                </th>
+                <th></th>
+                <th></th>
+
+                <th>
+                    <span class="roboto-font-4 font-color-gray">
+                        Acciones
+                    </span>
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+            <!-- END Header -->
+
+
+            <!-- Body -->
+            <tr *ngFor="let point of points">
+
+
+                <!-- point id -->
+                <td class="first-element">
+                    <b class="roboto-font-5">{{point.id}}</b>
+                </td>
+                <!-- END point id -->
+                <td></td>
+                <td></td>
+
+
+                <!-- coordenadas -->
+                <td>
+                    <b class="roboto-font-5">{{point.longitude}}</b>
+                </td>
+                <!-- END coordenadas -->
+
+                <td></td>
+                <td></td>
+
+                <!-- Cause -->
+                <td>
+                    <b class="roboto-font-5">{{point.latitude}}</b>
+                </td>
+                <!-- END Cause -->
+                <td></td>
+                <td></td>
+
+                <td>
+                    <!-- See details -->
+                    <div>
+                        <button class="btn-main btn-info" (click)="viewDetails(point.id)">
+                            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <!-- END See details -->
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+            <!-- END Body -->
+
+
+        </table>
+    </div>
+    <!-- END Table -->
+
+
+</div>
+<!-- END Table container -->
