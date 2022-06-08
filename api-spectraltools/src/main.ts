@@ -17,7 +17,8 @@ async function bootstrap() {
     .setTitle('Spectral Tools')
     .setDescription('Api de Spectral Tools')
     .setVersion('1.0')
-    // .addTag('cats')
+    .addTag('EndPoints')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
