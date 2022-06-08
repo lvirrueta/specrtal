@@ -7,20 +7,24 @@ import { UserGuard } from './core/guards/user/user.guard';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('../app/modules/public/public.module').then(m => m.PublicModule)
+    canActivate: [notLoggedGuard],
+    loadChildren: () =>
+      import('../app/modules/public/public.module').then((m) => m.PublicModule),
   },
   {
     path: 'user',
-    loadChildren: () => import('../app/modules/user/user.module').then(m => m.UserModule)
+    canActivate: [UserGuard],
+    loadChildren: () =>
+      import('../app/modules/user/user.module').then((m) => m.UserModule),
   },
   {
     path: '**',
-    redirectTo: ''
+    redirectTo: '',
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
