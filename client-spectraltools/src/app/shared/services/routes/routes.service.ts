@@ -7,11 +7,14 @@ import { Router } from '@angular/router';
 export class RoutesService {
   public routes = {
     public: {
-      landing: '',
-      sigin: '/sigin',
+      login: '/login'
     },
     user: {
-      home: '/user',
+      home: {
+        main: 'user',
+        review: 'user/review',
+        discardered: 'user/discardered'
+      }
     },
   };
 

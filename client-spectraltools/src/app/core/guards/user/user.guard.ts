@@ -4,7 +4,7 @@ import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angul
 
 // Services
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
-import { RoutesService } from '../../../shared/services/routes/routes.service';
+import { RoutesService } from 'src/app/shared/services/routes/routes.service';
 
 @Injectable({providedIn: 'root'})
 export class UserGuard implements CanActivate {
@@ -19,7 +19,7 @@ export class UserGuard implements CanActivate {
       return true;
     } else {
       this.routesService.link2(
-        this.routesService.routes.public.sigin
+        this.routesService.routes.public.login
       );
       return false;
     }
