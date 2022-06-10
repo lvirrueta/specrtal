@@ -1,4 +1,10 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpException,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import {
   ApiBearerAuth,
   ApiOperation,
@@ -25,8 +31,15 @@ export class AuthController {
     type: CloginToken,
   })
   @Post('login')
-  login(@Body() user: UserDTO) {
-    return this.authService.login(user);
+  async login(@Body() user: UserDTO) {
+    const authServiceResponse = await this.authService.login(user);
+    if (authServiceResponse['status']) {
+      throw new HttpException(
+        authServiceResponse['message'],
+        authServiceResponse['status'],
+      );
+    }
+    return authServiceResponse;
   }
 
   @UseGuards(AuthGuard('jwt'))
