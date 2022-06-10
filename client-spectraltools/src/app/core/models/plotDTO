@@ -1,0 +1,4 @@
+export interface PlotDTO { 
+    name: string;
+    poligon: string;
+}

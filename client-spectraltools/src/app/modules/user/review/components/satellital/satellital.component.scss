@@ -1,0 +1,78 @@
+/* Generals */
+
+.plot-container {
+    position: fixed;
+    top: 0;
+    right: -100vw;
+    width: calc(100vw - 300px);
+    height: 100vh;
+    min-height: 50rem;
+    border-radius: 48px 0 0 48px;
+    box-shadow: 0px 0px 15px var(--color-gray3);
+    z-index: 2;
+    transition: all 0.5s;
+}
+
+.show-plot-container {
+    right: 0 !important;
+    transition: all 0.5s;
+}
+
+.border_botom {
+    border-bottom: 1px solid var(--color-gray4);
+}
+
+.disabled-input-alert {
+    border: 2px solid var(--color-danger2);
+}
+
+
+/* END Generals */
+
+
+/* Body */
+
+#plot-body {
+    height: calc(100vh - 5rem);
+}
+
+.map-container {
+    position: relative;
+}
+
+
+/* END Body */
+
+@media screen and (max-width: 991px) {
+    .plot-log-container {
+        position: fixed;
+        top: 0;
+        right: -100vw;
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+        box-shadow: 0px 0px 15px var(--color-gray3);
+        z-index: 2;
+        transition: all 0.5s;
+    }
+    .map-container {
+        height: 45vh;
+    }
+    #plot-log-body {
+        height: auto;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    .plot-container {
+        position: fixed;
+        top: 0;
+        right: -100vw;
+        width: calc(100vw - 230px);
+        height: 100vh;
+        border-radius: 0;
+        box-shadow: 0px 0px 15px var(--color-gray3);
+        z-index: 2;
+        transition: all 0.5s;
+    }
+}

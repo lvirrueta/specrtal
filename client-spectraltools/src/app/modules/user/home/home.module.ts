@@ -13,6 +13,7 @@ import { ReviewComponent } from '../review/review.component';
 import { DiscarderedComponent } from '../discardered/discardered.component';
 import { MainComponent } from '../main/main.component';
 import { SatellitalComponent } from '../review/components/satellital/satellital.component';
+import { PlotMapComponent } from '../review/components/satellital/plot-map/plot-map.component';
 import { PointsComponent } from '../review/components/points/points.component';
 import { InfoComponent } from '../review/components/info/info.component';
 
@@ -26,6 +27,7 @@ import { InfoComponent } from '../review/components/info/info.component';
     DiscarderedComponent,
     MainComponent,
     SatellitalComponent,
+    PlotMapComponent,
     PointsComponent,
     InfoComponent
   ],
