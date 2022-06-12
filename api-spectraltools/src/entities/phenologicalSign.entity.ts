@@ -19,6 +19,6 @@ export class PhenologicalSignEntity {
   @Column()
   phenologicalStage: string;
 
-  @Column()
+  @Column({ type: 'geography' })
   sign: any; //raster
 }

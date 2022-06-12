@@ -46,10 +46,10 @@ export class PlaguePlotEntity {
 
   @OneToOne(() => PlageHostEntity)
   @Column()
-  plagueSign: any; //raster
+  plagueSign: string; //raster
 
   @Column()
-  phenologicalSign: any; //raster
+  phenologicalSign: string; //raster
 
   @Column()
   discart: boolean;
