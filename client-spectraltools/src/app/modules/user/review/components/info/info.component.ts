@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IPlaguePlot } from 'src/app/core/models/IPlaguePlot';
 import { PlaguePlotService } from 'src/app/core/services/plaguePlot.service';
@@ -9,7 +9,7 @@ import { CropInfoInterface } from '../../../interfaces/cropinfo.interface';
   templateUrl: './info.component.html',
   styleUrls: ['./info.component.scss']
 })
-export class InfoComponent {
+export class InfoComponent implements OnInit {
   public plaguePlot!: Observable<IPlaguePlot>;
   cropInformation: CropInfoInterface = {
     typecrop: 'Maíz',
