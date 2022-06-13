@@ -30,7 +30,7 @@ export class DiscardService {
     plague.discart = true;
     await this.plaguePlotRepository.save({ id: plague.id, discart: true });
     const RESP = await this.observationRepository.save({
-      observation: observation.observacion,
+      observation: observation.observation,
       plagePlotID: observation.id,
     });
     if (RESP) {
