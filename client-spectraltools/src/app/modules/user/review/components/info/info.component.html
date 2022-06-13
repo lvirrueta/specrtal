@@ -15,7 +15,21 @@
             Cultivo:
         </span>
         <b class="roboto-font-4">
-            {{cropInformation.typecrop}}
+            {{(plaguePlot | async)?.varietyProductID?.varietyName}}
+        </b>
+        <br>
+        <span class="roboto-font-4 font-color-gray">
+            Plaga:
+        </span>
+        <b class="roboto-font-4">
+            {{(plaguePlot | async)?.plagueID?.scientificName}}
+        </b>
+        <br>
+        <span class="roboto-font-4 font-color-gray">
+            Edad(semanas):
+        </span>
+        <b class="roboto-font-4">
+            {{(plaguePlot | async)?.cropWeekAge}}
         </b>
     </div>
     <!-- END crop -->
@@ -27,7 +41,14 @@
             Etapa fenológica:
         </span>
         <b class="roboto-font-4">
-            {{cropInformation.phenologicStage}}
+            {{(plaguePlot | async)?.phenologicalStage}}
+        </b>
+        <br>
+        <span class="roboto-font-4 font-color-gray">
+            Daño %:
+        </span>
+        <b class="roboto-font-4">
+            {{(plaguePlot | async)?.damagePercentage}}
         </b>
     </div>
     <!-- END phenological stage -->

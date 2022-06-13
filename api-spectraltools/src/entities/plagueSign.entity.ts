@@ -15,10 +15,10 @@ export class PlagueSignEntity {
   @OneToOne(() => PlageEntity)
   plagueID: PlageEntity;
 
-  @Column()
+  @Column({ type: 'geography' })
   sign: any; //raster
 
   @OneToOne(() => PlageEntity, (plague) => plague.plagueSign)
-  @JoinColumn({ name: 'PlagueID' })
+  @JoinColumn({ name: 'plagueID' })
   plague: PlageEntity;
 }
