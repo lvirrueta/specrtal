@@ -56,5 +56,11 @@ export class PlaguePlotEntity {
   observation: string;
 
   @Column()
+  plaguePixel: string;
+
+  @Column()
+  controlPixel: string;
+
+  @Column()
   discart: boolean;
 }
