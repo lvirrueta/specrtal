@@ -15,7 +15,7 @@
             Cultivo:
         </span>
         <b class="roboto-font-4">
-            {{cropInformation.typecrop}}
+            {{(plaguePlot | async)?.varietyProductID?.varietyName}}
         </b>
     </div>
     <!-- END crop -->
@@ -27,7 +27,7 @@
             Etapa fenológica:
         </span>
         <b class="roboto-font-4">
-            {{cropInformation.phenologicStage}}
+            {{(plaguePlot | async)?.phenologicalStage}}
         </b>
     </div>
     <!-- END phenological stage -->
