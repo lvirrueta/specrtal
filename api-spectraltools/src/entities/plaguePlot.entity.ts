@@ -6,6 +6,7 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { ObservationEntity } from './observation.entity';
 import { PlageEntity } from './plague.entity';
 import { PlageHostEntity } from './plagueHost.entity';
 import { VarietyProductEntity } from './varietyProduct.entity';
@@ -46,10 +47,13 @@ export class PlaguePlotEntity {
 
   @OneToOne(() => PlageHostEntity)
   @Column()
-  plagueSign: any; //raster
+  plagueSign: string; //raster
 
   @Column()
-  phenologicalSign: any; //raster
+  phenologicalSign: string; //raster
+
+  @OneToOne(() => ObservationEntity, (plague) => plague.plagePlotID)
+  observation: string;
 
   @Column()
   discart: boolean;
