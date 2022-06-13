@@ -10,6 +10,7 @@ import { PlaguePlotService } from 'src/app/core/services/plaguePlot.service';
   styleUrls: ['./points.component.scss'],
 })
 export class PointsComponent implements OnInit {
+  
   points: PointsInfoInterface[] = [];
   public plaguePlot!: IPlaguePlot;
 
