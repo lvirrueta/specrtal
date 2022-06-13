@@ -3,6 +3,7 @@ import { PointsInfoInterface } from '../../../interfaces/pointsInfo.interface';
 import { ModalsService } from 'src/app/shared/services/modals/modals.service';
 import { IPlaguePlot } from 'src/app/core/models/IPlaguePlot';
 import { PlaguePlotService } from 'src/app/core/services/plaguePlot.service';
+import { DiscardDTO } from 'src/app/core/models/discardDTO';
 
 @Component({
   selector: 'app-points',
@@ -96,7 +97,38 @@ export class PointsComponent implements OnInit {
       });
   }
 
-  private setDiscarded(result:string): void {
-    console.log(result + ' el punto: ', this.plaguePlot.id);
+  private setDiscarded(result: string): void {
+    const observation: DiscardDTO = {
+      id: this.plaguePlot.id,
+      observation: result,
+    };
+    this.discardLoading();
+    this.plaguePlotService.setDiscardController(observation).subscribe({
+      next: (response) => this.discartedSucess(),
+      error: (error) => this.discartedError(error),
+    });
   }
+
+  private discartedSucess() {
+    this.plaguePlotService.getPlaguePlotToSign();
+    this.modalService.singleModal(
+      'se descarto',
+      'ok',
+      this.modalService.MODALTYPE.success
+    );
+  }
+
+  private discartedError(error:string) {
+    this.plaguePlotService.getPlaguePlotToSign();
+    this.modalService.singleModal(
+      error,
+      'ok',
+      this.modalService.MODALTYPE.danger
+    );
+  }
+
+  private discardLoading() {
+    this.modalService.loading('cargando');
+  }
+
 }
