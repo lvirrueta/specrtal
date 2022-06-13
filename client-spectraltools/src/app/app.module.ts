@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 
 // Dependencies
 import { ErrorsInterceptor } from './shared/interceptors/errors/errors.interceptor';
+import { TokenInterceptor } from './shared/interceptors/token-http/token.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,11 @@ import { ErrorsInterceptor } from './shared/interceptors/errors/errors.intercept
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorsInterceptor,
       multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
     },
   ],
   bootstrap: [AppComponent],

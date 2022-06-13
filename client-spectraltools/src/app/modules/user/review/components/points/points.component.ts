@@ -1,29 +1,40 @@
 import { Component, OnInit } from '@angular/core';
-import { PointsInfoInterface } from '../../../interfaces/pointsInfo.interface'; 
+import { PointsInfoInterface } from '../../../interfaces/pointsInfo.interface';
 import { ModalsService } from 'src/app/shared/services/modals/modals.service';
+import { Observable } from 'rxjs';
+import { IPlaguePlot } from 'src/app/core/models/IPlaguePlot';
+import { PlaguePlotService } from 'src/app/core/services/plaguePlot.service';
 
 @Component({
   selector: 'app-points',
   templateUrl: './points.component.html',
-  styleUrls: ['./points.component.scss']
+  styleUrls: ['./points.component.scss'],
 })
-export class PointsComponent implements OnInit{
-
+export class PointsComponent implements OnInit {
   points: PointsInfoInterface[] = [];
+  public plaguePlot!: IPlaguePlot;
 
   constructor(
-    private modalService: ModalsService
-  ) { }
-  
+    private modalService: ModalsService,
+    private plaguePlotService: PlaguePlotService
+  ) {}
+
   ngOnInit(): void {
     this.pointsRequest();
-    
+    this.getPlaguePlot();
   }
-  
+
+  private getPlaguePlot(): void {
+    this.plaguePlotService.getPlaguePlot().subscribe({
+      next: (response) => {
+        this.plaguePlot = response;
+      },
+      error: (error) => error,
+    });
+  }
+
   private pointsRequest(): void {
-    this.modalService.loading(
-      'Cargando'
-    );
+    this.modalService.loading('Cargando');
     // TODO - Add request
     this.points.push(
       { id: 1, longitude: -101.34542, latitude: 36.123123 },
@@ -33,7 +44,7 @@ export class PointsComponent implements OnInit{
     this.pointsRequestSuccess();
   }
 
-  private pointsRequestSuccess( ): void {
+  private pointsRequestSuccess(): void {
     // response.forEach( PLOT => {
     //   this.plots.push({
     //     plotId: PLOT.plot.id,
@@ -49,23 +60,22 @@ export class PointsComponent implements OnInit{
     this.modalService.close();
   }
 
-  public async deletePoint( id: number ): Promise<void> {
-    await this.modalService.questionModal(
-      'Borrará el punto' +
-        'Está seguro',
-      'Ok',
-      'Cancelar',
-      this.modalService.MODALTYPE.danger
-    ).then((result) => {
-      if (result.isConfirmed) {
-        this.deletePointCluster(id);
-      }
-    });
+  public async deletePoint(id: number): Promise<void> {
+    await this.modalService
+      .questionModal(
+        'Borrará el punto' + 'Está seguro',
+        'Ok',
+        'Cancelar',
+        this.modalService.MODALTYPE.danger
+      )
+      .then((result) => {
+        if (result.isConfirmed) {
+          this.deletePointCluster(id);
+        }
+      });
   }
 
-  private deletePointCluster( id: number ): void {
-    
-  }
+  private deletePointCluster(id: number): void {}
 
   savePoint() {
     console.log('Hola mundo');
@@ -75,8 +85,17 @@ export class PointsComponent implements OnInit{
     console.log('puntos guardados');
   }
 
-  discardPoint() {
-    console.log('llamar modal');
+  async discardPoint() {
+    await this.modalService
+      .modalWithInput('Descarte de punto', 'descartando puntos', 'textarea')
+      .then((result) => {
+        if (result.isConfirmed) {
+          this.setDiscarded(result.value);
+        }
+      });
   }
 
+  private setDiscarded(result:string): void {
+    console.log(result + ' el punto: ', this.plaguePlot.id);
+  }
 }
