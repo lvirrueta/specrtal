@@ -11,18 +11,9 @@ export class ReviewComponent {
   constructor(private plaguePlotService: PlaguePlotService) {}
 
   ngOnInit(): void {
-    this.getPlaguePlotToSign();
+    this.plaguePlotService.getPlaguePlotToSign();
   }
 
-  private getPlaguePlotToSign(){
-    this.plaguePlotService.GetPlotController().subscribe({
-      next: response => this.setPlaguePlot(response),
-      error: error => error
-    });
-  }
-
-  private setPlaguePlot(data: IPlaguePlot):void{
-    this.plaguePlotService.setPlaguePlot(data);
-  }
+ 
 
 }

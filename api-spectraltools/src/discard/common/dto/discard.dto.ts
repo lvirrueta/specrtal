@@ -4,5 +4,5 @@ export class ObservationDTO {
   @ApiProperty()
   id: number;
   @ApiProperty()
-  observacion: string;
+  observation: string;
 }
