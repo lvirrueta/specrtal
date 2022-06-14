@@ -13,8 +13,23 @@ export class PlaguePlotService {
 
   constructor(private http: HttpClient) {}
 
+  public deleteDiscardController(id: number): Observable<any> {
+    return this.http.delete(`/discard/delete-discard-point/${id}`);
+  }
+
   public getPlotController(): Observable<any> {
     return this.http.get(`${this.url}/plague-plot/toSign`);
+  }
+
+  public getDiscardedListController(): Observable<any> {
+    return this.http.get(`${this.url}/discard/discard-list`);
+  }
+
+  public updateDiscardedPointController(id: number): Observable<any> {
+    return this.http.put(
+      `${this.url}/discard/udpdate-discard-point/${id}`,
+      null
+    );
   }
 
   public setDiscardController(observation: DiscardDTO): Observable<any> {
@@ -32,7 +47,7 @@ export class PlaguePlotService {
   public getPlaguePlotToSign(): void {
     this.getPlotController().subscribe({
       next: (response: IPlaguePlot) => this.setPlaguePlot(response),
-      error: error => error,
+      error: (error) => error,
     });
   }
 }

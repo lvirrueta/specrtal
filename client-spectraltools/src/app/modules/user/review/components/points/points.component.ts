@@ -38,11 +38,11 @@ export class PointsComponent implements OnInit {
   private pointsRequest(): void {
     this.modalService.loading('Cargando');
     // TODO - Add request
-    this.points.push(
-      { id: 1, longitude: -101.34542, latitude: 36.123123 },
-      { id: 2, longitude: -101.34542, latitude: 36.123123 },
-      { id: 3, longitude: -101.34542, latitude: 36.123123 }
-    );
+    // this.points.push(
+    //   { id: 1, longitude: -101.34542, latitude: 36.123123 },
+    //   { id: 2, longitude: -101.34542, latitude: 36.123123 },
+    //   { id: 3, longitude: -101.34542, latitude: 36.123123 }
+    // );
     this.pointsRequestSuccess();
   }
 
