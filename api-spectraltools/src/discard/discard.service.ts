@@ -13,6 +13,7 @@ export class DiscardService {
     @InjectRepository(ObservationEntity)
     private observationRepository: Repository<ObservationEntity>,
   ) {}
+  // start controller
   async discard(observacion: ObservationDTO) {
     const ID = observacion.id;
     const PlAGUE_PLOT = await this.findPlaguePlotOneByID(ID);
@@ -21,6 +22,34 @@ export class DiscardService {
     } else {
       return 'no hay';
     }
+  }
+
+  async discardList() {
+    return await this.observationRepository.find({
+      relations: ['plagePlotID'],
+    });
+  }
+
+  async updateDiscardPoint(id: number) {
+    const OBSERVATION = await this.findObservationById(id);
+    this.plaguePlotRepository.save({
+      id: OBSERVATION.plagePlotID['id'],
+      discart: false,
+    });
+    this.observationRepository.delete(id);
+    return true;
+  }
+  // end controller
+
+  private async findObservationById(id: number) {
+    return await this.observationRepository.findOne({
+      relations: ['plagePlotID'],
+      where: [
+        {
+          id: id,
+        },
+      ],
+    });
   }
 
   private async setObservation(
