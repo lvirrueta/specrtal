@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PointsInfoInterface } from '../../../interfaces/pointsInfo.interface';
 import { ModalsService } from 'src/app/shared/services/modals/modals.service';
-import { Observable } from 'rxjs';
 import { IPlaguePlot } from 'src/app/core/models/IPlaguePlot';
 import { PlaguePlotService } from 'src/app/core/services/plaguePlot.service';
 import { DiscardDTO } from 'src/app/core/models/discardDTO';
@@ -12,6 +11,7 @@ import { DiscardDTO } from 'src/app/core/models/discardDTO';
   styleUrls: ['./points.component.scss'],
 })
 export class PointsComponent implements OnInit {
+  
   points: PointsInfoInterface[] = [];
   public plaguePlot!: IPlaguePlot;
 
@@ -29,6 +29,7 @@ export class PointsComponent implements OnInit {
     this.plaguePlotService.getPlaguePlot().subscribe({
       next: (response) => {
         this.plaguePlot = response;
+        
       },
       error: (error) => error,
     });

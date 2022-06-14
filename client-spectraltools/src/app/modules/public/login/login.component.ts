@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ModalsService } from '../../../shared/services/modals/modals.service';
-import { AuthService } from '../../../shared/services/auth/auth.service';
-import { LoginDTO } from '../../../core/models/loginDTO';
-import { ILogin } from '../../../core/models/ILogin';
-import { RoutesService } from '../../../shared/services/routes/routes.service';
+import { ModalsService } from 'src/app/shared/services/modals/modals.service';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { LoginDTO } from 'src/app/core/models/loginDTO';
+import { ILogin } from 'src/app/core/models/ILogin';
+import { RoutesService } from 'src/app/shared/services/routes/routes.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { AuthLoginService } from '../../../core/services/auth-login.service';
+import { AuthLoginService } from 'src/app/core/services/auth-login.service';
 
 @Component({
   selector: 'app-login',

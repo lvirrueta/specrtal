@@ -3,3 +3,8 @@ export interface PointsInfoInterface {
     longitude: number;
     latitude: number;
 }
+
+export interface PointsInterface {
+    lng: number,
+    lat: number,
+}
