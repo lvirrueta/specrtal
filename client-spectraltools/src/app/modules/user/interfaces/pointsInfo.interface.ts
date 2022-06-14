@@ -1,5 +1,7 @@
+import { IPlagueID, IPlaguePlot } from "./plaguePlot.interface";
+
 export interface PointsInfoInterface {
     id: number;
-    longitude: number;
-    latitude: number;
+    plagePlotID: IPlaguePlot;
+    observation: string;
 }

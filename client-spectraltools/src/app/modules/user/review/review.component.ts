@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { IPlaguePlot } from 'src/app/core/models/IPlaguePlot';
 import { PlaguePlotService } from 'src/app/core/services/plaguePlot.service';
 
 @Component({
@@ -13,7 +12,4 @@ export class ReviewComponent {
   ngOnInit(): void {
     this.plaguePlotService.getPlaguePlotToSign();
   }
-
- 
-
 }
