@@ -5,3 +5,8 @@ export interface PointsInfoInterface {
     plagePlotID: IPlaguePlot;
     observation: string;
 }
+
+export interface PointsInterface {
+    lng: number,
+    lat: number,
+}

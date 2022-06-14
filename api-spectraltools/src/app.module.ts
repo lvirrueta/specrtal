@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { PlaguePlotModule } from './plague-plot/plague-plot.module';
 import { DiscardModule } from './discard/discard.module';
+import { SpectralModule } from './spectral/spectral.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { DiscardModule } from './discard/discard.module';
     AuthModule,
     PlaguePlotModule,
     DiscardModule,
+    SpectralModule,
   ],
   controllers: [],
   providers: [],

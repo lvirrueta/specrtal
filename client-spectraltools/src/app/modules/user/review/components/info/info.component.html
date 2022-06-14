@@ -1,4 +1,4 @@
-<div class="row g-0 event-container my-2" *ngIf="cropInformation">
+<div class="row g-0 event-container my-2" *ngIf="plaguePlot">
 
     <!-- Title -->
     <div class="col-12 py-3 ps-3">
@@ -9,7 +9,7 @@
     <!-- END Title -->
 
 
-    <!-- crop -->
+    <!-- Crop -->
     <div class="col-6 ps-3 mt-2">
         <span class="roboto-font-4 font-color-gray">
             Cultivo:
@@ -17,14 +17,24 @@
         <b class="roboto-font-4">
             {{(plaguePlot | async)?.varietyProductID?.varietyName}}
         </b>
-        <br>
+    </div>
+    <!-- END Crop -->
+
+
+    <!-- cientificName -->
+    <div class="col-6 ps-3 mt-2">
         <span class="roboto-font-4 font-color-gray">
             Plaga:
         </span>
         <b class="roboto-font-4">
             {{(plaguePlot | async)?.plagueID?.scientificName}}
         </b>
-        <br>
+    </div>
+    <!-- END cientificName -->
+
+
+    <!-- crop week age -->
+    <div class="col-6 ps-3 mt-2">
         <span class="roboto-font-4 font-color-gray">
             Edad(semanas):
         </span>
@@ -32,10 +42,10 @@
             {{(plaguePlot | async)?.cropWeekAge}}
         </b>
     </div>
-    <!-- END crop -->
+    <!-- END crop week age -->
 
 
-    <!-- phenological stage -->
+    <!-- phenologicalStage -->
     <div class="col-6 ps-3 mt-2">
         <span class="roboto-font-4 font-color-gray">
             Etapa fenológica:
@@ -43,15 +53,22 @@
         <b class="roboto-font-4">
             {{(plaguePlot | async)?.phenologicalStage}}
         </b>
-        <br>
+    </div>
+    <!-- END phenologicalStage -->
+
+
+
+    <!-- damagePercentage -->
+    <div class="col-6 ps-3 mt-2">
         <span class="roboto-font-4 font-color-gray">
-            Daño %:
+            Daño:
         </span>
         <b class="roboto-font-4">
             {{(plaguePlot | async)?.damagePercentage}}
+            %
         </b>
     </div>
-    <!-- END phenological stage -->
+    <!-- END damagePercentage -->
 
 
 </div>
