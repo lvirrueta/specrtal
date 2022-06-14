@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { HttpService } from '@nestjs/axios';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PlaguePlotEntity } from 'src/entities/plaguePlot.entity';
 import { Repository } from 'typeorm';
@@ -7,13 +8,31 @@ import { SpectralDTO } from './common/dto/spectral.dto';
 
 @Injectable()
 export class SpectralService {
+  private url = 'http://localhost:3000/auth/signIn';
   constructor(
     @InjectRepository(PlaguePlotEntity)
     private plaguePlotRepository: Repository<PlaguePlotEntity>,
+    private httpService: HttpService,
   ) {}
   async spectral(spectral: SpectralDTO) {
     const plague = await this.findOneById(spectral.id);
-    return this.spectraSignAssign(plague, spectral);
+    const spectralSign = this.spectraSignAssign(plague, spectral);
+    return await this.redirectToSign(spectralSign);
+  }
+
+  private async redirectToSign(spectral: CEspectral) {
+    let resp: any;
+    this.httpService.post(this.url, spectral).subscribe({
+      next: (response) => {
+        console.log(response.data);
+        return response;
+      },
+      error: (error) => {
+        console.log(error);
+        return error;
+      },
+    });
+    return await resp;
   }
 
   private spectraSignAssign(
