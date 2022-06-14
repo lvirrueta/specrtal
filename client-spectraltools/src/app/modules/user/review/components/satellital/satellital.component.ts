@@ -1,10 +1,9 @@
 import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { Map, Marker } from 'mapbox-gl';
 import { PointsInterface } from '../../../interfaces/pointsInfo.interface';
-import { ModalsService } from '../../../../../shared/services/modals/modals.service';
+import { ModalsService } from 'src/app/shared/services/modals/modals.service';
 import { PlaguePlotService } from '../../../../../core/services/plaguePlot.service';
 import { IPlaguePlot } from '../../../../../core/models/IPlaguePlot';
-import MapboxDraw from '@mapbox/mapbox-gl-draw';
 
 @Component({
   selector: 'app-satellital',
@@ -12,16 +11,15 @@ import MapboxDraw from '@mapbox/mapbox-gl-draw';
   styleUrls: ['./satellital.component.scss'],
 })
 export class SatellitalComponent implements OnInit {
-  
   public plaguePlot!: IPlaguePlot;
-  
-  marcadores: PointsInterface[] = [];
+  controlPoints: PointsInterface[] = [];
+  polygonPoints: PointsInterface[] = [];
   marcador: PointsInterface = {
     lat: 0,
-    lng: 0
+    lng: 0,
   };
-  map!: Map;
-  draw!: MapboxDraw;
+  mapPoint!: Map;
+  mapPolygon!: Map;
 
   @ViewChild('mapDiv')
     mapDivElement!: ElementRef;
@@ -29,99 +27,115 @@ export class SatellitalComponent implements OnInit {
   constructor(
     private modalsService: ModalsService,
     private plaguePlotService: PlaguePlotService
-  ) {
-    // console.log(this.marcadores);
-    
-  }
+  ) {}
 
   ngOnInit(): void {
-    this.modalsService.loading(
-      'Cargando'
-    );
     this.getPlaguePlot();
   }
 
-  guardarStorage() {
-    localStorage.setItem('marcadores', JSON.stringify( this.marcadores ) );
+  saveStorageControl() {
+    localStorage.setItem('controlPoints', JSON.stringify(this.controlPoints));
   }
 
-  public createMap(): void {
-    this.modalsService.close();
-    this.map = new Map({
+  saveStoragePolygon() {
+    localStorage.setItem('polygonPoints', JSON.stringify(this.polygonPoints));
+  }
+
+  /******** Control Points *********/
+  public createPointsMap(): void {
+    this.mapPoint = new Map({
       container: this.mapDivElement.nativeElement,
       style: 'mapbox://styles/mapbox/satellite-v9',
-      center: [this.plaguePlot.plagueLocation.y, this.plaguePlot.plagueLocation.x],
+      center: [
+        this.plaguePlot.plagueLocation.y,
+        this.plaguePlot.plagueLocation.x,
+      ],
       zoom: 17,
     });
 
-    this.map.on('click', (e) => {
+    this.mapPoint.on('click', (e) => {
       const lat = e.lngLat.lat;
       const lng = e.lngLat.lng;
-      this.agregarMarcador(lng,lat);
+      this.addControlPoints(lng, lat);
     });
 
-    this.createMarker(this.plaguePlot.plagueLocation.y, this.plaguePlot.plagueLocation.x);
+    this.createPlaguePoint(
+      this.plaguePlot.plagueLocation.y,
+      this.plaguePlot.plagueLocation.x
+    );
   }
 
-  private getPlaguePlot(): void {
-    this.plaguePlotService.getPlaguePlot().subscribe({
-      next: (response) => {
-        this.plaguePlot = response;
-        this.createMap();
-      },
-      error: (error) => error,
-    });
-  }
-
-  public createMarker(lng: number, lat: number): void {
+  public createPlaguePoint(lng: number, lat: number): void {
     const marker = new Marker({
       draggable: false,
     })
       .setLngLat([lng, lat])
-      .addTo(this.map);
+      .addTo(this.mapPoint);
   }
 
-  public agregarMarcador(lng: number, lat: number): void {
+  public addControlPoints(lng: number, lat: number): void {
     const nvomarker = new Marker({
       draggable: true,
     })
       .setLngLat([lng, lat])
-      .addTo(this.map);
+      .addTo(this.mapPoint);
     this.marcador = nvomarker.getLngLat();
-    this.marcadores.push(this.marcador);
+    this.controlPoints.push(this.marcador);
+    this.saveStorageControl();
   }
-
-  public drawPolygon() {
-    this.draw = new MapboxDraw({
-      displayControlsDefault: false,
-      controls: {
-        polygon: true,
-        trash: true
-      },
-      defaultMode: 'draw_polygon'
+  
+  /******** Polygon Points *********/
+  public createPolygonMap(): void {
+    this.mapPolygon = new Map({
+      container: this.mapDivElement.nativeElement,
+      style: 'mapbox://styles/mapbox/satellite-v9',
+      center: [
+        this.plaguePlot.plagueLocation.y,
+        this.plaguePlot.plagueLocation.x,
+      ],
+      zoom: 17,
     });
 
-    this.map.addControl(this.draw);
+    this.mapPolygon.on('click', (e) => {
+      const lat = e.lngLat.lat;
+      const lng = e.lngLat.lng;
+      this.addPolygonPoints(lng, lat);
+    });
 
-    this.map.on('draw.create', this.updateArea);
-    this.map.on('draw.delete', this.updateArea);
-    this.map.on('draw.update', this.updateArea);
+    this.createPlaguePol(
+      this.plaguePlot.plagueLocation.y,
+      this.plaguePlot.plagueLocation.x
+    );
+  }
+  public createPlaguePol(lng: number, lat: number): void {
+    const marker = new Marker({
+      draggable: false,
+    })
+      .setLngLat([lng, lat])
+      .addTo(this.mapPolygon);
   }
 
-  public updateArea(e: any) {
-    const data = this.draw.getAll();
-    const answer = document.getElementById('calculated-area');
-    // if (data.features.length > 0) {
-    //   const area = turf.area(data);
-    //   const rounded_area = Math.round(area * 100 ) / 100;
-    //   answer?.innerHTML = `<p><strong>${rounded_area}</strong></p>
-    //                       <p>square meters</p>`;
-    // } else {
-    //   answer?.innerHTML = '';
-    //   if (e.type !== 'draw.delete')
-    //     alert('Click the map to draw a polygon.');
-    // }
+  public addPolygonPoints(lng: number, lat: number): void {
+    const nvomarker = new Marker({
+      draggable: true,
+    })
+      .setLngLat([lng, lat])
+      .addTo(this.mapPolygon);
+    this.marcador = nvomarker.getLngLat();
+    this.polygonPoints.push(this.marcador);
+    this.saveStoragePolygon();
   }
 
+  /*********** Connections **********/
+  private getPlaguePlot(): void {
+    this.modalsService.loading('Cargando');
+    this.plaguePlotService.getPlaguePlot().subscribe({
+      next: (response) => {
+        this.plaguePlot = response;
+        this.modalsService.close();
+      },
+      error: (error) => error,
+    });
+  }
 
 }
