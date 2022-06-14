@@ -13,6 +13,10 @@ export class PlaguePlotService {
 
   constructor(private http: HttpClient) {}
 
+  public deleteDiscardController(id: number): Observable<any> {
+    return this.http.delete(`/discard/delete-discard-point/${id}`);
+  }
+
   public getPlotController(): Observable<any> {
     return this.http.get(`${this.url}/plague-plot/toSign`);
   }

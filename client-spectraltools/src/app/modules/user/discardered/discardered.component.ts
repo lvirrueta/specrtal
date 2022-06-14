@@ -61,7 +61,16 @@ export class DiscarderedComponent implements OnInit {
 
   private deletePointCluster(id: number): void {
     this.modalsService.loading('cargando');
-    console.log('delete');
+    this.plaguePlotService.deleteDiscardController(id).subscribe({
+      next: () => {
+        this.modalsService.close();
+        this.deletePointModal('Descartado', 'OK', 'success');
+      },
+      error: (error) => {
+        this.modalsService.close();
+        this.deletePointModal(error.message, 'OK', 'danger');
+      },
+    });
   }
 
   private evaluePointCluster(id: number): void {
