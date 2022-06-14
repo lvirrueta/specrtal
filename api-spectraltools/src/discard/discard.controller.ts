@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
-=======
 import {
   Body,
   Controller,
@@ -10,7 +7,6 @@ import {
   Put,
   UseGuards,
 } from '@nestjs/common';
->>>>>>> main
 import { AuthGuard } from '@nestjs/passport';
 import {
   ApiBearerAuth,
