@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
@@ -54,5 +55,9 @@ export class DiscardController {
   @Put('udpdate-discard-point/:id')
   async updateDiscardPoint(@Param('id') id: number) {
     return await this.discardService.updateDiscardPoint(id);
+  }
+  @Delete('delete-discard-point/:id')
+  async deleteDiscardPoint(@Param('id') id: number) {
+    return await this.discardService.deleteDiscardPoint(id);
   }
 }
