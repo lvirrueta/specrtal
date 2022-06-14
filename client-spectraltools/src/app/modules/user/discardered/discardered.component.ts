@@ -42,29 +42,39 @@ export class DiscarderedComponent implements OnInit {
       point.id === id ? (observation = point.observation) : '';
     });
     await this.modalsService
-      .questionModal(
-        observation,
-        'Descartar',
-        'Aceptar',
+      .discardOptionModal(
+        'Descartar Parcela',
+        `Descripción: ${observation}`,
+        'Volver a evaluar',
+        'Eliminar',
         this.modalsService.MODALTYPE.info
       )
       .then((result) => {
         if (result.isConfirmed) {
+          this.evaluePointCluster(id);
+        }
+        if (result.isDenied) {
           this.deletePointCluster(id);
         }
       });
   }
 
   private deletePointCluster(id: number): void {
-    this.modalsService.loading('eliminando');
+    this.modalsService.loading('cargando');
+    console.log('delete');
+  }
+
+  private evaluePointCluster(id: number): void {
+    this.modalsService.loading('cargando');
+    console.log('evalue');
     this.plaguePlotService.updateDiscardedPointController(id).subscribe({
       next: () => {
         this.modalsService.close();
-        this.deletePointModal('Descartado','OK','success');
+        this.deletePointModal('Descartado', 'OK', 'success');
       },
       error: (error) => {
         this.modalsService.close();
-        this.deletePointModal(error.message,'OK','danger');
+        this.deletePointModal(error.message, 'OK', 'danger');
       },
     });
   }
@@ -78,7 +88,7 @@ export class DiscarderedComponent implements OnInit {
       .singleModal(
         text,
         label,
-        modalType === 'succsess'
+        modalType === 'success'
           ? this.modalsService.MODALTYPE.success
           : this.modalsService.MODALTYPE.danger
       )
