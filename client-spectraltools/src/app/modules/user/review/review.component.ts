@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { Component } from '@angular/core';
-=======
 import { Component, OnInit } from '@angular/core';
->>>>>>> main
 import { PlaguePlotService } from 'src/app/core/services/plaguePlot.service';
 
 @Component({
@@ -18,8 +14,4 @@ export class ReviewComponent implements OnInit {
   ngOnInit(): void {
     this.plaguePlotService.getPlaguePlotToSign();
   }
-<<<<<<< HEAD
-=======
-
->>>>>>> main
 }
