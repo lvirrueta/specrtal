@@ -5,8 +5,6 @@ export interface PointsInfoInterface {
 }
 
 export interface PointsInterface {
-
-    lat: number,
     lng: number,
-    
+    lat: number,
 }
