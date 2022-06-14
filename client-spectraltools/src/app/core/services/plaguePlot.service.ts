@@ -14,7 +14,7 @@ export class PlaguePlotService {
   constructor(private http: HttpClient) {}
 
   public deleteDiscardController(id: number): Observable<any> {
-    return this.http.delete(`/discard/udpdate-discard-point/${id}`);
+    return this.http.delete(`/discard/delete-discard-point/${id}`);
   }
 
   public getPlotController(): Observable<any> {
