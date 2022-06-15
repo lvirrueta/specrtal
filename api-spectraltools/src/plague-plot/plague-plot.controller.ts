@@ -6,6 +6,7 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { CPlagePlotID } from './common/class/plaguePlot.class';
 import { PlaguePlotService } from './plague-plot.service';
 
 @ApiBearerAuth()
@@ -21,7 +22,7 @@ export class PlaguePlotController {
     status: 200,
     description: 'Si todo sale bien regresa informacion de la parcela',
     isArray: false,
-    type: Boolean,
+    type: CPlagePlotID,
   })
   @Get('toSign')
   login() {
