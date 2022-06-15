@@ -75,7 +75,6 @@ export class DiscarderedComponent implements OnInit {
 
   private evaluePointCluster(id: number): void {
     this.modalsService.loading('cargando');
-    console.log('evalue');
     this.plaguePlotService.updateDiscardedPointController(id).subscribe({
       next: () => {
         this.modalsService.close();

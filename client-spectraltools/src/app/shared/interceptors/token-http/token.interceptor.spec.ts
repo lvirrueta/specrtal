@@ -1,4 +1,4 @@
-// Angular imports
+/* eslint-disable max-len */
 import { getTestBed, TestBed } from '@angular/core/testing';
 import {
   HttpClientTestingModule,
