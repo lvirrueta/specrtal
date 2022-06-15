@@ -52,10 +52,28 @@ export class DiscardController {
   async discardList() {
     return await this.discardService.discardList();
   }
+  @ApiOperation({
+    summary: 'Actualiza los puntos descartados',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'El punto descartado podra volver a ser evaluado',
+    isArray: true,
+    type: Boolean,
+  })
   @Put('udpdate-discard-point/:id')
   async updateDiscardPoint(@Param('id') id: number) {
     return await this.discardService.updateDiscardPoint(id);
   }
+  @ApiOperation({
+    summary: 'Elimina punto descartado',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Eliminian punto descartado y tambien elimina la parcela',
+    isArray: true,
+    type: Boolean,
+  })
   @Delete('delete-discard-point/:id')
   async deleteDiscardPoint(@Param('id') id: number) {
     return await this.discardService.deleteDiscardPoint(id);
