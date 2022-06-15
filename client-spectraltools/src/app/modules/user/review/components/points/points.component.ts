@@ -11,7 +11,6 @@ import { DiscardDTO } from 'src/app/core/models/discardDTO';
   styleUrls: ['./points.component.scss'],
 })
 export class PointsComponent implements OnInit {
-  
   points: PointsInfoInterface[] = [];
   public plaguePlot!: IPlaguePlot;
 
@@ -29,7 +28,6 @@ export class PointsComponent implements OnInit {
     this.plaguePlotService.getPlaguePlot().subscribe({
       next: (response) => {
         this.plaguePlot = response;
-        
       },
       error: (error) => error,
     });
@@ -89,7 +87,11 @@ export class PointsComponent implements OnInit {
 
   async discardPoint() {
     await this.modalService
-      .modalWithInput('Descarte de punto', 'descartando puntos', 'textarea')
+      .modalWithInput(
+        'Descarte de poligono',
+        'Escriba el motivo de descarte del poligono',
+        'textarea'
+      )
       .then((result) => {
         if (result.isConfirmed) {
           this.setDiscarded(result.value);
@@ -118,7 +120,7 @@ export class PointsComponent implements OnInit {
     );
   }
 
-  private discartedError(error:string) {
+  private discartedError(error: string) {
     this.plaguePlotService.getPlaguePlotToSign();
     this.modalService.singleModal(
       error,
@@ -130,5 +132,4 @@ export class PointsComponent implements OnInit {
   private discardLoading() {
     this.modalService.loading('cargando');
   }
-
 }
