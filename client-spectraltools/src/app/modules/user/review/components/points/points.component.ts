@@ -89,6 +89,7 @@ export class PointsComponent implements OnInit {
   }
 
   public async savePoints() {
+    this.saveSuccess();
     this.modalService.singleModal(
       'Guardado con éxito',
       'Aceptar',
@@ -96,6 +97,12 @@ export class PointsComponent implements OnInit {
     );
     this.saveStorage();
     this.chargeStorage();
+  }
+
+  public saveSuccess() {
+    this.plaguePlotService.getPlaguePlotToSign();
+    this.controlPoints = [];
+    this.polygonPoints = [];
   }
 
   async discardPoint() {
