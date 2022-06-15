@@ -100,7 +100,11 @@ export class PointsComponent implements OnInit {
 
   async discardPoint() {
     await this.modalService
-      .modalWithInput('Descarte de punto', 'descartando puntos', 'textarea')
+      .modalWithInput(
+        'Descarte de poligono',
+        'Escriba el motivo de descarte del poligono',
+        'textarea'
+      )
       .then((result) => {
         if (result.isConfirmed) {
           this.setDiscarded(result.value);
@@ -129,7 +133,7 @@ export class PointsComponent implements OnInit {
     );
   }
 
-  private discartedError(error:string) {
+  private discartedError(error: string) {
     this.plaguePlotService.getPlaguePlotToSign();
     this.modalService.singleModal(
       error,
@@ -141,5 +145,4 @@ export class PointsComponent implements OnInit {
   private discardLoading() {
     this.modalService.loading('cargando');
   }
-
 }

@@ -13,12 +13,12 @@ table {
 
 th {
     font-weight: normal;
-    text-align: left;
+    text-align: center;
     padding: 0.5rem 1rem;
 }
 
 tr {
-    border-bottom: 0.1rem solid var(--color-gray4);
+    border-bottom: 0.1rem solid var(--color-main1);
 }
 
 td {
@@ -29,6 +29,10 @@ td {
 
 .first-element {
     border-left: 0.25rem solid var(--color-main1);
+}
+
+.last-element{
+    border-right: 0.25rem solid var(--color-main1);
 }
 
 .disabled-background {
