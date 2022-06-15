@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PointsInfoInterface } from '../../../interfaces/pointsInfo.interface';
+import { PointsInterface } from '../../../interfaces/pointsInfo.interface';
 import { ModalsService } from 'src/app/shared/services/modals/modals.service';
 import { IPlaguePlot } from 'src/app/core/models/IPlaguePlot';
 import { PlaguePlotService } from 'src/app/core/services/plaguePlot.service';
@@ -11,17 +11,46 @@ import { DiscardDTO } from 'src/app/core/models/discardDTO';
   styleUrls: ['./points.component.scss'],
 })
 export class PointsComponent implements OnInit {
-  points: PointsInfoInterface[] = [];
+  
   public plaguePlot!: IPlaguePlot;
+
+  controlPoints: PointsInterface[] = [];
+  polygonPoints: PointsInterface[] = [];
+  controlPointsLS: string | null | undefined;
+  controlPolygonLS: string | null | undefined;
 
   constructor(
     private modalService: ModalsService,
     private plaguePlotService: PlaguePlotService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.pointsRequest();
     this.getPlaguePlot();
+  }
+
+  saveStorage() {
+    localStorage.setItem('controlPoints', JSON.stringify(this.controlPoints));
+    localStorage.setItem('polygonPoints', JSON.stringify(this.polygonPoints));
+  }
+
+  chargeStorage() {
+    this.controlPointsLS = localStorage.getItem('controlPoints');
+    this.controlPoints = this.controlPointsLS ? JSON.parse(this.controlPointsLS) : null;
+    this.controlPolygonLS = localStorage.getItem('polygonPoints');
+    this.polygonPoints = this.controlPolygonLS ? JSON.parse(this.controlPolygonLS) : null;
+  }
+
+  clearStorage() {
+    localStorage.removeItem('controlPoints');
+    localStorage.removeItem('polygonPoints');
+  }
+
+  public buttonAux() {
+    this.controlPointsLS = localStorage.getItem('controlPoints');
+    this.controlPoints = this.controlPointsLS ? JSON.parse(this.controlPointsLS) : null;
+    this.controlPolygonLS = localStorage.getItem('polygonPoints');
+    this.polygonPoints = this.controlPolygonLS ? JSON.parse(this.controlPolygonLS) : null;
   }
 
   private getPlaguePlot(): void {
@@ -35,54 +64,38 @@ export class PointsComponent implements OnInit {
 
   private pointsRequest(): void {
     this.modalService.loading('Cargando');
-    // TODO - Add request
-    // this.points.push(
-    //   { id: 1, longitude: -101.34542, latitude: 36.123123 },
-    //   { id: 2, longitude: -101.34542, latitude: 36.123123 },
-    //   { id: 3, longitude: -101.34542, latitude: 36.123123 }
-    // );
     this.pointsRequestSuccess();
   }
 
   private pointsRequestSuccess(): void {
-    // response.forEach( PLOT => {
-    //   this.plots.push({
-    //     plotId: PLOT.plot.id,
-    //     plotName: PLOT.plot.name,
-    //     ranchName: PLOT.ranch.name,
-    //     center: PLOT.plot.center,
-    //     polygon: PLOT.plot.polygon
-    //   });
-    // });
-    // this.plotControl.setValue(this.plots[0].plotId);
-    // this.center = this.plots[0].center;
-    // this.onSelect();
     this.modalService.close();
   }
 
   public async deletePoint(id: number): Promise<void> {
     await this.modalService
       .questionModal(
-        'Borrará el punto' + 'Está seguro',
-        'Ok',
+        'Borrará el punto' + '¿Está seguro?',
+        'Aceptar',
         'Cancelar',
         this.modalService.MODALTYPE.danger
       )
       .then((result) => {
         if (result.isConfirmed) {
-          this.deletePointCluster(id);
+          this.controlPoints.splice(id,1);
+          this.saveStorage();
+          this.chargeStorage();
         }
       });
   }
 
-  private deletePointCluster(id: number): void {}
-
-  savePoint() {
-    console.log('Hola mundo');
-  }
-
-  savePoints() {
-    console.log('puntos guardados');
+  public async savePoints() {
+    this.modalService.singleModal(
+      'Guardado con éxito',
+      'Aceptar',
+      this.modalService.MODALTYPE.success
+    );
+    this.saveStorage();
+    this.chargeStorage();
   }
 
   async discardPoint() {

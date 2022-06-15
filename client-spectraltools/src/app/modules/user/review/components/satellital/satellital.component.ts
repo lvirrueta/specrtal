@@ -12,14 +12,18 @@ import { IPlaguePlot } from '../../../../../core/models/IPlaguePlot';
 })
 export class SatellitalComponent implements OnInit {
   public plaguePlot!: IPlaguePlot;
-  controlPoints: PointsInterface[] = [];
+  public controlPoints: PointsInterface[] = [];
   polygonPoints: PointsInterface[] = [];
-  marcador: PointsInterface = {
+  controlPointsLS: string | null | undefined;
+  controlPolygonLS: string | null | undefined;
+  point: PointsInterface = {
     lat: 0,
     lng: 0,
   };
   mapPoint!: Map;
   mapPolygon!: Map;
+  markersPoints: Marker[] = [];
+  markersPolygon: Marker[] = [];
 
   @ViewChild('mapDiv')
     mapDivElement!: ElementRef;
@@ -74,16 +78,17 @@ export class SatellitalComponent implements OnInit {
   }
 
   public addControlPoints(lng: number, lat: number): void {
-    const nvomarker = new Marker({
+    const newMarker = new Marker({
       draggable: true,
     })
       .setLngLat([lng, lat])
       .addTo(this.mapPoint);
-    this.marcador = nvomarker.getLngLat();
-    this.controlPoints.push(this.marcador);
+    this.point = newMarker.getLngLat();
+    this.controlPoints.push(this.point);
+    this.markersPoints.push(newMarker);
     this.saveStorageControl();
   }
-  
+
   /******** Polygon Points *********/
   public createPolygonMap(): void {
     this.mapPolygon = new Map({
@@ -107,6 +112,7 @@ export class SatellitalComponent implements OnInit {
       this.plaguePlot.plagueLocation.x
     );
   }
+
   public createPlaguePol(lng: number, lat: number): void {
     const marker = new Marker({
       draggable: false,
@@ -116,13 +122,14 @@ export class SatellitalComponent implements OnInit {
   }
 
   public addPolygonPoints(lng: number, lat: number): void {
-    const nvomarker = new Marker({
+    const newMarker = new Marker({
       draggable: true,
     })
       .setLngLat([lng, lat])
       .addTo(this.mapPolygon);
-    this.marcador = nvomarker.getLngLat();
-    this.polygonPoints.push(this.marcador);
+    this.point = newMarker.getLngLat();
+    this.polygonPoints.push(this.point);
+    this.markersPolygon.push(newMarker);
     this.saveStoragePolygon();
   }
 
@@ -133,9 +140,9 @@ export class SatellitalComponent implements OnInit {
       next: (response) => {
         this.plaguePlot = response;
         this.modalsService.close();
+        this.createPolygonMap();
       },
       error: (error) => error,
     });
   }
-
 }

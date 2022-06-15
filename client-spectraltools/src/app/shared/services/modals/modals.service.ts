@@ -391,9 +391,6 @@ export class ModalsService {
       // },
       inputAttributes: {
         maxlength: '100',
-        // pattern: '/^[A-Za-z ]+$/',
-        // eslint-disable-next-line max-len
-        // onkeypress: "return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) ||(event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 32))"
       },
     });
   }
