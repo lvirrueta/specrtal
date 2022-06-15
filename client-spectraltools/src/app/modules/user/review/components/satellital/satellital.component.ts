@@ -11,7 +11,6 @@ import { IPlaguePlot } from '../../../../../core/models/IPlaguePlot';
   styleUrls: ['./satellital.component.scss'],
 })
 export class SatellitalComponent implements OnInit {
-
   public plaguePlot!: IPlaguePlot;
   public controlPoints: PointsInterface[] = [];
   polygonPoints: PointsInterface[] = [];
@@ -32,7 +31,7 @@ export class SatellitalComponent implements OnInit {
   constructor(
     private modalsService: ModalsService,
     private plaguePlotService: PlaguePlotService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.getPlaguePlot();
@@ -89,7 +88,7 @@ export class SatellitalComponent implements OnInit {
     this.markersPoints.push(newMarker);
     this.saveStorageControl();
   }
-  
+
   /******** Polygon Points *********/
   public createPolygonMap(): void {
     this.mapPolygon = new Map({
@@ -146,5 +145,4 @@ export class SatellitalComponent implements OnInit {
       error: (error) => error,
     });
   }
-
 }
