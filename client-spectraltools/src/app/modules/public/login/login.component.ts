@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ModalsService } from 'src/app/shared/services/modals/modals.service';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { LoginDTO } from 'src/app/core/models/loginDTO';
@@ -11,10 +16,9 @@ import { AuthLoginService } from 'src/app/core/services/auth-login.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit{
-
+export class LoginComponent implements OnInit {
   public LOGINFORMGROUP!: FormGroup;
   public recoveryPasword = false;
 
@@ -22,9 +26,9 @@ export class LoginComponent implements OnInit{
     private formBuilder: FormBuilder,
     private modalsService: ModalsService,
     private authService: AuthService,
-    private routesService:RoutesService,
-    private authLoginService: AuthLoginService,
-  ) { }
+    private routesService: RoutesService,
+    private authLoginService: AuthLoginService
+  ) {}
 
   ngOnInit(): void {
     this.initLoginFormGroup();
@@ -32,8 +36,8 @@ export class LoginComponent implements OnInit{
 
   private initLoginFormGroup(): void {
     this.LOGINFORMGROUP = this.formBuilder.group({
-      email: [ null, [ Validators.required, Validators.email ] ],
-      password: [ null, [ Validators.required ] ]
+      email: [null, [Validators.required, Validators.email]],
+      password: [null, [Validators.required]],
     });
   }
 
@@ -53,45 +57,39 @@ export class LoginComponent implements OnInit{
     this.loginRequest();
   }
 
-  private loginSuccess( response: ILogin ): void {
+  private loginSuccess(response: ILogin): void {
     this.modalsService.close();
     this.authService.login(response.access_token, true);
     this.routesService.link2(this.routesService.routes.user.home.main);
   }
 
-  private emailLoginError( error: HttpErrorResponse): void {
+  private loginError(error: HttpErrorResponse): void {
     if (error.status === 403) {
       this.modalsService.close();
       this.modalsService.singleModal(
-        'Error en la autenticación',
+        error.error.message,
         'OK',
-        this.modalsService.MODALTYPE.info
+        this.modalsService.MODALTYPE.danger
+      );
+    } else {
+      this.modalsService.close();
+      this.modalsService.singleModal(
+        error.error.message,
+        'OK',
+        this.modalsService.MODALTYPE.danger
       );
     }
   }
-
   // ------------ Conections ------------ //
   private loginRequest(): void {
-    this.modalsService.loading(
-      'Cargando'
-    );
+    this.modalsService.loading('Cargando');
     const BODY: LoginDTO = {
       email: this.loginEmailControl.value,
-      password: this.loginPasswordControl.value
+      password: this.loginPasswordControl.value,
     };
     this.authLoginService.loggControllerLogin(BODY).subscribe({
-      next: response => this.loginSuccess(response),
-      error: error => {
-        this.emailLoginError(error);
-        if( error.status === 403 ) {
-          this.modalsService.close();
-          this.modalsService.singleModal(
-            '','',
-            this.modalsService.MODALTYPE.danger);
-        }
-      }
+      next: (response) => this.loginSuccess(response),
+      error: (error) => error,
     });
   }
-
 }
-

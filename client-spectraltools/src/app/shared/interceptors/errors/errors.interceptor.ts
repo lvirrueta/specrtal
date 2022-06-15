@@ -1,24 +1,40 @@
 import { Injectable } from '@angular/core';
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import {
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+} from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { ModalsService } from '../../services/modals/modals.service';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Injectable()
 export class ErrorsInterceptor implements HttpInterceptor {
+  constructor(private modalsService: ModalsService,
+    private authService: AuthService,) {}
 
-  constructor(
-    private modalsService: ModalsService,
-  ) {}
-
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+  intercept(
+    request: HttpRequest<unknown>,
+    next: HttpHandler
+  ): Observable<HttpEvent<unknown>> {
     if (!request.url.includes('/assets')) {
       return next.handle(request).pipe(
-        catchError( HTTPERROR => {
-          // if (HTTPERROR.status != 404) {
-          //   // this.modalsService.singleModal(
-          //   //   // this.translateService.MODALtYPE.warning
-          //   // );
-          // }
+        catchError((HTTPERROR) => {
+          if (HTTPERROR.status === 401) {
+            this.authService.closeSession();
+            this.modalsService.singleModal(
+              HTTPERROR.error.message,
+              'OK',
+              this.modalsService.MODALTYPE.danger
+            );
+          } else {
+            this.modalsService.singleModal(
+              HTTPERROR.error.message,
+              'OK',
+              this.modalsService.MODALTYPE.danger
+            );
+          }
           return throwError(() => HTTPERROR);
         })
       );
