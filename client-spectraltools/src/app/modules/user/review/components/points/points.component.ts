@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PointsInterface } from '../../../interfaces/pointsInfo.interface';
 import { ModalsService } from 'src/app/shared/services/modals/modals.service';
 import { IPlaguePlot } from 'src/app/core/models/IPlaguePlot';
@@ -11,6 +11,9 @@ import { DiscardDTO } from 'src/app/core/models/discardDTO';
   styleUrls: ['./points.component.scss'],
 })
 export class PointsComponent implements OnInit {
+
+  @Input() nombreHijo: string = 'sin nombre';
+  @Output() cNombreHijo = new EventEmitter<string>();
   
   public plaguePlot!: IPlaguePlot;
 
@@ -27,6 +30,11 @@ export class PointsComponent implements OnInit {
   ngOnInit(): void {
     this.pointsRequest();
     this.getPlaguePlot();
+  }
+
+  cambiarNombre() {
+    this.nombreHijo = 'Eduardo';
+    this.cNombreHijo.emit( this.nombreHijo );
   }
 
   saveStorage() {

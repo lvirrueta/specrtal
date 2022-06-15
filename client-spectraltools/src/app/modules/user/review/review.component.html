@@ -2,6 +2,12 @@
     <b class="roboto-font-0 font-color-main">
         Sistema de Análisis y caracterización
     </b>
+    <b>
+        {{ nombre }}
+    </b>
+    <button (click)="cambiarNombre()">
+        boton
+    </button>
 </div>
 
 <div class="row">
@@ -21,7 +27,7 @@
 
     <!-- Points -->
     <div class="col-12 py-3 ps-3">
-        <app-points></app-points>
+        <app-points [nombreHijo]="nombre" (cNombreHijo)="nombre = $event"></app-points>
     </div>
     <!-- END Points -->
 </div>

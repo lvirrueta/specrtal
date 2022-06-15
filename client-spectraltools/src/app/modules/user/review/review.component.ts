@@ -10,8 +10,13 @@ export class ReviewComponent implements OnInit {
   constructor(private plaguePlotService: PlaguePlotService) {}
 
   polygon: boolean = true;
+  nombre: string = '';
 
   ngOnInit(): void {
     this.plaguePlotService.getPlaguePlotToSign();
+  }
+
+  cambiarNombre(){
+    this.nombre = 'Lucero';
   }
 }
