@@ -1,5 +1,5 @@
-<div class="sidebar container">
-    <div class="col-12 py-3 py-xl-4 border-bottom">
+<div class="sidebar">
+    <div class="ps-3 py-3 py-xl-4 border-bottom">
         <div class="logo" [routerLink]="[routesService.routes.user.home.main]">
             <a>
                 <img src="../../../../../../assets/img/public/logo/logo-white.svg" alt="" width="150" height="">
@@ -11,8 +11,8 @@
 
 
     <!-- User menu -->
-    <div class="col-10 cursor-pointer">
-        <div class="row g-0 align-items-center">
+    <div class="ps-3 py-3 py-xl-4 cursor-pointer">
+        <div class="align-items-center">
 
             <!-- Item Review -->
             <div class="row g-0 btn-container py-2 align-items-center cursor-poiter" (click)="link2route('/user/review')">
@@ -42,7 +42,7 @@
             <!-- END Item Discardered -->
 
             <!-- Logout -->
-            <div class="col-12 py-2 py-xl-4 align-items-center">
+            <div class="py-3 align-items-center">
                 <button class="btn-main-strong" (click)="logoutRequest()">
                     <i class="fa-solid fa-right-from-bracket"></i>
                     <span> Cerrar sesión</span>
