@@ -59,17 +59,24 @@ export class LoginComponent implements OnInit{
     this.routesService.link2(this.routesService.routes.user.home.main);
   }
 
-  private emailLoginError( error: HttpErrorResponse): void {
+  private loginError( error: HttpErrorResponse): void {
+    console.log(error);
     if (error.status === 403) {
       this.modalsService.close();
       this.modalsService.singleModal(
-        'Error en la autenticación',
+        error.error.message,
         'OK',
-        this.modalsService.MODALTYPE.info
+        this.modalsService.MODALTYPE.danger
+      );
+    }else{
+      this.modalsService.close();
+      this.modalsService.singleModal(
+        error.error.message,
+        'OK',
+        this.modalsService.MODALTYPE.danger
       );
     }
   }
-
   // ------------ Conections ------------ //
   private loginRequest(): void {
     this.modalsService.loading(
@@ -81,15 +88,7 @@ export class LoginComponent implements OnInit{
     };
     this.authLoginService.loggControllerLogin(BODY).subscribe({
       next: response => this.loginSuccess(response),
-      error: error => {
-        this.emailLoginError(error);
-        if( error.status === 403 ) {
-          this.modalsService.close();
-          this.modalsService.singleModal(
-            '','',
-            this.modalsService.MODALTYPE.danger);
-        }
-      }
+      error: error => error,
     });
   }
 
