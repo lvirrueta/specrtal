@@ -14,7 +14,9 @@
 <!-- Table container -->
 <div class="row g-0 justify-content-between align-items-center">
 
-
+    <h1 class="roboto-font-0 text-center mt-3 font-color-main">
+        Lista de descartados
+    </h1>
     <!-- Table -->
     <div class="col-12 mt-5 mb-4 table-container text-center">
         <table>
@@ -59,7 +61,7 @@
             <!-- Body -->
             <tr *ngFor="let point of points">
 
-
+                
                 <!-- point id -->
                 <td class="first-element">
                     <b class="roboto-font-5">{{point.id}}</b>
@@ -86,18 +88,18 @@
                 <td></td>
                 <td></td>
 
-                <td>
+                <td >
                     <!-- See details -->
                     <div>
-                        <button class="btn-main btn-info" (click)="viewDetails(point.id)">
+                        <button class=" btn-info" (click)="viewDetails(point.id)">
                             <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
                         </button>
                     </div>
                     <!-- END See details -->
                 </td>
                 <td></td>
-                <td></td>
-            </tr>
+                <td class = "last-element"></td>
+            </tr >
             <!-- END Body -->
 
 
