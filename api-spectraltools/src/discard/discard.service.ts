@@ -39,6 +39,12 @@ export class DiscardService {
     this.observationRepository.delete(id);
     return true;
   }
+  async deleteDiscardPoint(id: number) {
+    const OBSERVATION = await this.findObservationById(id);
+    this.observationRepository.delete(id);
+    this.plaguePlotRepository.delete(OBSERVATION.plagePlotID['id']);
+    return true;
+  }
   // end controller
 
   private async findObservationById(id: number) {

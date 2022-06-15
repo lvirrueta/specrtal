@@ -2,45 +2,138 @@ import { Injectable } from '@angular/core';
 import Swal, { SweetAlertResult } from 'sweetalert2';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ModalsService {
   public pendingLogins = 0;
 
   public MODALTYPE = {
     success: {
-      icon: "success.png",
-      color: "--color-success2",
-      background: "background-color-success",
-      buttonColor: "--color-success2",
+      icon: 'success.png',
+      color: '--color-success2',
+      background: 'background-color-success',
+      buttonColor: '--color-success2',
     },
     warning: {
-      icon: "warning.png",
-      color: "--color-warning2",
-      background: "background-color-warning",
-      buttonColor: "--color-warning2",
+      icon: 'warning.png',
+      color: '--color-warning2',
+      background: 'background-color-warning',
+      buttonColor: '--color-warning2',
     },
     danger: {
-      icon: "error.png",
-      color: "--color-danger2",
-      background: "background-color-danger",
-      buttonColor: "--color-danger2",
+      icon: 'error.png',
+      color: '--color-danger2',
+      background: 'background-color-danger',
+      buttonColor: '--color-danger2',
     },
     info: {
-      icon: "info.png",
-      color: "--color-info2",
-      background: "background-color-info",
-      buttonColor: "--color-info2",
+      icon: 'info.png',
+      color: '--color-info2',
+      background: 'background-color-info',
+      buttonColor: '--color-info2',
     },
     main: {
-      icon: "info.png",
-      color: "--color-main3",
-      background: "background-color-main",
-      buttonColor: "--color-main3",
+      icon: 'info.png',
+      color: '--color-main3',
+      background: 'background-color-main',
+      buttonColor: '--color-main3',
     },
   };
 
-  constructor() { }
+  constructor() {}
+
+  public discardOptionModal(
+    title: string,
+    text: string,
+    confirmLabel: string,
+    dennyLabel: string,
+    modalType: {
+      icon: string;
+      color: string;
+      background: string;
+      buttonColor: string;
+    }
+  ): Promise<SweetAlertResult<any>> {
+    this.pendingLogins = 0;
+    Swal.close();
+    return Swal.fire({
+      title: title,
+      showDenyButton: true,
+      confirmButtonText: confirmLabel,
+      denyButtonText: dennyLabel,
+      html: `
+        <!-- Contenedor del html para la modal -->
+        <div class="container-fluid px-0"
+             style="
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 7.5rem;
+              margin-left: auto;
+              margin-right: auto;
+               
+             ">
+
+          <!-- Encabezado -->
+          <div class="row g-0"
+               style="
+                padding-top: 1.25rem;
+                padding-bottom: 1.25rem;
+                border-top: 15px solid  var(${modalType.color});
+                border-radius: 20px 20px 0px 0px;
+               ">
+
+          </div>
+          <!-- FIN Encabezado -->
+
+
+          <!-- Cuerpo de la modal -->
+            <div class="row g-0"
+                 style="
+                  margin-top: 1.5rem;
+                 ">
+              <div class="col-12 text-center">
+
+
+              <!-- Icono -->
+               <div class="col-12 p-0">
+               <img src="/assets/img/shared/modals/${modalType.icon}" alt="icon"/>
+                 
+               </div>
+              <!-- FIN Icono -->
+
+                <br/>
+                <div class="px-3">
+                <b class="roboto-font-3 font-color-info"
+                style="
+                     padding-top: 10px;
+                    ">${text}</b>
+                    </div>
+                </div>
+              </div>
+            </div>
+          <!-- FIN Cuerpo de la modal -->
+
+
+        </div>
+        <!-- FIN Contenedor del html para la modal -->
+
+        <!-- Separador -->
+        <div style="margin-top: 11rem"></div>
+        <!-- FIN Separador -->
+      `,
+      customClass: {
+        popup: 'swal-popup-general',
+        confirmButton: 'btn-widht',
+      },
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      reverseButtons: true,
+      showCloseButton: true,
+      focusConfirm: true,
+    });
+  }
 
   public singleModal(
     text: string,
@@ -219,10 +312,9 @@ export class ModalsService {
         <span class="roboto-font-5">${confirmLabel}</span>
       `,
       // ConfirmButtonColor: this.scssConectionService.getColorFromStyles(modalType.buttonColor),
-      denyButtonText: `<span class="roboto-font-5">&nbsp;&nbsp;${cancelLabel}&nbsp;&nbsp;</span>`
+      denyButtonText: `<span class="roboto-font-5">&nbsp;&nbsp;${cancelLabel}&nbsp;&nbsp;</span>`,
     });
   }
-
 
   // Image modal
   public image(url: string): void {
@@ -249,7 +341,7 @@ export class ModalsService {
         <!-- FIN Contenedor del html para la modal -->
       `,
       customClass: {
-        popup: 'swal-popup-general'
+        popup: 'swal-popup-general',
       },
       allowOutsideClick: true,
       backdrop: true,
@@ -264,12 +356,22 @@ export class ModalsService {
     title: string,
     text: string,
     inputType:
-      'text' | 'email' | 'password' | 'number' | 'tel' | 'range' |
-      'textarea' | 'select' | 'radio' | 'checkbox' | 'file' | 'url'
+      | 'text'
+      | 'email'
+      | 'password'
+      | 'number'
+      | 'tel'
+      | 'range'
+      | 'textarea'
+      | 'select'
+      | 'radio'
+      | 'checkbox'
+      | 'file'
+      | 'url'
   ): Promise<SweetAlertResult<any>> {
     this.pendingLogins = 0;
     Swal.close();
-    return  Swal.fire({
+    return Swal.fire({
       customClass: {
         popup: `popup-class`,
         cancelButton: 'btn-cancel btn-widht',
@@ -285,14 +387,14 @@ export class ModalsService {
       //     Return inputAlerts.required;
       //   } else if(value.length > 18) {
       //     Return inputAlerts.max + 18;
-      //   } 
+      //   }
       // },
       inputAttributes: {
         maxlength: '100',
         // pattern: '/^[A-Za-z ]+$/',
         // eslint-disable-next-line max-len
         // onkeypress: "return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) ||(event.charCode >= 48 && event.charCode <= 57) || (event.charCode == 32))"
-      }, 
+      },
     });
   }
 
