@@ -13,7 +13,7 @@ import { IPlaguePlot } from '../../../../../core/models/IPlaguePlot';
 export class SatellitalComponent implements OnInit {
 
   public plaguePlot!: IPlaguePlot;
-  controlPoints: PointsInterface[] = [];
+  public controlPoints: PointsInterface[] = [];
   polygonPoints: PointsInterface[] = [];
   controlPointsLS: string | null | undefined;
   controlPolygonLS: string | null | undefined;
@@ -32,12 +32,7 @@ export class SatellitalComponent implements OnInit {
   constructor(
     private modalsService: ModalsService,
     private plaguePlotService: PlaguePlotService
-  ) {
-    this.controlPointsLS = localStorage.getItem('controlPoints');
-    this.controlPoints = this.controlPointsLS ? JSON.parse(this.controlPointsLS) : null;
-    this.controlPolygonLS = localStorage.getItem('polygonPoints');
-    this.polygonPoints = this.controlPolygonLS ? JSON.parse(this.controlPolygonLS) : null;
-  }
+  ) { }
 
   ngOnInit(): void {
     this.getPlaguePlot();
