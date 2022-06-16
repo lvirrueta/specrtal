@@ -7,10 +7,10 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { Map, Marker } from 'mapbox-gl';
-import { PointsInterface } from '../../../interfaces/pointsInfo.interface';
+import { PointsInterface } from 'src/app/modules/user/interfaces/pointsInfo.interface';
 import { ModalsService } from 'src/app/shared/services/modals/modals.service';
-import { PlaguePlotService } from '../../../../../core/services/plaguePlot.service';
-import { IPlaguePlot } from '../../../../../core/models/IPlaguePlot';
+import { PlaguePlotService } from 'src/app/core/services/plaguePlot.service';
+import { IPlaguePlot } from 'src/app/core/models/IPlaguePlot';
 
 @Component({
   selector: 'app-satellital',
@@ -45,14 +45,6 @@ export class SatellitalComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPlaguePlot();
-  }
-
-  saveStorageControl() {
-    localStorage.setItem('controlPoints', JSON.stringify(this.controlPoints));
-  }
-
-  saveStoragePolygon() {
-    localStorage.setItem('polygonPoints', JSON.stringify(this.polygonPoints));
   }
 
   /******** Control Points *********/

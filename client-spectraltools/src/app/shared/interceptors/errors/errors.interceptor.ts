@@ -6,8 +6,8 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
-import { ModalsService } from '../../services/modals/modals.service';
-import { AuthService } from '../../services/auth/auth.service';
+import { ModalsService } from 'src/app/shared/services/modals/modals.service';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 @Injectable()
 export class ErrorsInterceptor implements HttpInterceptor {

@@ -12,10 +12,10 @@ import { ModalsService } from 'src/app/shared/services/modals/modals.service';
 import { PlaguePlotService } from 'src/app/core/services/plaguePlot.service';
 
 // Interfaces
-import { PointsInterface } from '../../../interfaces/pointsInfo.interface';
+import { PointsInterface } from 'src/app/modules/user/interfaces/pointsInfo.interface';
 import { IPlaguePlot } from 'src/app/core/models/IPlaguePlot';
 import { DiscardDTO } from 'src/app/core/models/discardDTO';
-import { ICoordinatesSpectral } from '../../../../../core/models/ICoordinatesSpectral';
+import { ICoordinatesSpectral } from 'src/app/core/models/ICoordinatesSpectral';
 
 @Component({
   selector: 'app-points',
