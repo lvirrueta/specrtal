@@ -26,8 +26,14 @@ describe('AuthService', () => {
             }),
           },
         },
-        AuthService,
-        JwtService,
+        {
+          provide: JwtService,
+          useValue: {
+            sign: jest
+              .fn()
+              .mockImplementation(() => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'),
+          },
+        },
         UserEntity,
       ],
     }).compile();
@@ -52,10 +58,8 @@ describe('AuthService', () => {
         email: 'lvirrueta@innmortal.com',
         password: '123',
       }),
-    ).toEqual([
-      {
-        access_token: expect.any(String),
-      },
-    ]);
+    ).toEqual({
+      access_token: expect.any(String),
+    });
   });
 });

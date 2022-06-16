@@ -20,7 +20,6 @@ export class PlaguePlotService {
         },
       ],
     });
-    // console.log(a[0]);
     return a[0];
   }
 }
