@@ -1,9 +1,16 @@
-import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  OnInit,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { Map, Marker } from 'mapbox-gl';
-import { PointsInterface } from '../../../interfaces/pointsInfo.interface';
+import { PointsInterface } from 'src/app/modules/user/interfaces/pointsInfo.interface';
 import { ModalsService } from 'src/app/shared/services/modals/modals.service';
-import { PlaguePlotService } from '../../../../../core/services/plaguePlot.service';
-import { IPlaguePlot } from '../../../../../core/models/IPlaguePlot';
+import { PlaguePlotService } from 'src/app/core/services/plaguePlot.service';
+import { IPlaguePlot } from 'src/app/core/models/IPlaguePlot';
 
 @Component({
   selector: 'app-satellital',
@@ -11,9 +18,12 @@ import { IPlaguePlot } from '../../../../../core/models/IPlaguePlot';
   styleUrls: ['./satellital.component.scss'],
 })
 export class SatellitalComponent implements OnInit {
+  @Output() pointOutput = new EventEmitter<PointsInterface>();
+  @Output() polygonOutput = new EventEmitter<PointsInterface>();
+
   public plaguePlot!: IPlaguePlot;
   public controlPoints: PointsInterface[] = [];
-  polygonPoints: PointsInterface[] = [];
+  public polygonPoints: PointsInterface[] = [];
   controlPointsLS: string | null | undefined;
   controlPolygonLS: string | null | undefined;
   point: PointsInterface = {
@@ -35,14 +45,6 @@ export class SatellitalComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPlaguePlot();
-  }
-
-  saveStorageControl() {
-    localStorage.setItem('controlPoints', JSON.stringify(this.controlPoints));
-  }
-
-  saveStoragePolygon() {
-    localStorage.setItem('polygonPoints', JSON.stringify(this.polygonPoints));
   }
 
   /******** Control Points *********/
@@ -85,8 +87,7 @@ export class SatellitalComponent implements OnInit {
       .addTo(this.mapPoint);
     this.point = newMarker.getLngLat();
     this.controlPoints.push(this.point);
-    this.markersPoints.push(newMarker);
-    this.saveStorageControl();
+    this.pointOutput.emit(this.point);
   }
 
   /******** Polygon Points *********/
@@ -129,8 +130,7 @@ export class SatellitalComponent implements OnInit {
       .addTo(this.mapPolygon);
     this.point = newMarker.getLngLat();
     this.polygonPoints.push(this.point);
-    this.markersPolygon.push(newMarker);
-    this.saveStoragePolygon();
+    this.polygonOutput.emit(this.point);
   }
 
   /*********** Connections **********/

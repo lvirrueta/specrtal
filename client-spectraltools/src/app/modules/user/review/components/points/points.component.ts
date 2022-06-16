@@ -1,56 +1,65 @@
-import { Component, OnInit } from '@angular/core';
-import { PointsInterface } from '../../../interfaces/pointsInfo.interface';
+import {
+  Component,
+  Input,
+  OnInit,
+  DoCheck,
+  KeyValueDiffers,
+  KeyValueDiffer,
+} from '@angular/core';
+
+// Services
 import { ModalsService } from 'src/app/shared/services/modals/modals.service';
-import { IPlaguePlot } from 'src/app/core/models/IPlaguePlot';
 import { PlaguePlotService } from 'src/app/core/services/plaguePlot.service';
+
+// Interfaces
+import { PointsInterface } from 'src/app/modules/user/interfaces/pointsInfo.interface';
+import { IPlaguePlot } from 'src/app/core/models/IPlaguePlot';
 import { DiscardDTO } from 'src/app/core/models/discardDTO';
+import { ICoordinatesSpectral } from 'src/app/core/models/ICoordinatesSpectral';
 
 @Component({
   selector: 'app-points',
   templateUrl: './points.component.html',
   styleUrls: ['./points.component.scss'],
 })
-export class PointsComponent implements OnInit {
-  
+export class PointsComponent implements OnInit, DoCheck {
+  @Input() pointInput: PointsInterface = { lat: 0, lng: 0 };
+  @Input() polygonInput: PointsInterface = { lat: 0, lng: 0 };
   public plaguePlot!: IPlaguePlot;
 
-  controlPoints: PointsInterface[] = [];
-  polygonPoints: PointsInterface[] = [];
-  controlPointsLS: string | null | undefined;
-  controlPolygonLS: string | null | undefined;
+  public controlPoints: PointsInterface[] = [];
+  public polygonPoints: PointsInterface[] = [];
+  data: ICoordinatesSpectral = {
+    id: 0,
+    controlCoord: [],
+    polygonCoord: [],
+  };
+  private differ: KeyValueDiffer<string, any> | undefined;
 
   constructor(
+    private differs: KeyValueDiffers,
     private modalService: ModalsService,
     private plaguePlotService: PlaguePlotService
-  ) { }
+  ) {
+    this.differ = this.differs.find({}).create();
+  }
 
   ngOnInit(): void {
     this.pointsRequest();
     this.getPlaguePlot();
   }
 
-  saveStorage() {
-    localStorage.setItem('controlPoints', JSON.stringify(this.controlPoints));
-    localStorage.setItem('polygonPoints', JSON.stringify(this.polygonPoints));
-  }
-
-  chargeStorage() {
-    this.controlPointsLS = localStorage.getItem('controlPoints');
-    this.controlPoints = this.controlPointsLS ? JSON.parse(this.controlPointsLS) : null;
-    this.controlPolygonLS = localStorage.getItem('polygonPoints');
-    this.polygonPoints = this.controlPolygonLS ? JSON.parse(this.controlPolygonLS) : null;
-  }
-
-  clearStorage() {
-    localStorage.removeItem('controlPoints');
-    localStorage.removeItem('polygonPoints');
-  }
-
-  public buttonAux() {
-    this.controlPointsLS = localStorage.getItem('controlPoints');
-    this.controlPoints = this.controlPointsLS ? JSON.parse(this.controlPointsLS) : null;
-    this.controlPolygonLS = localStorage.getItem('polygonPoints');
-    this.polygonPoints = this.controlPolygonLS ? JSON.parse(this.controlPolygonLS) : null;
+  ngDoCheck(): void {
+    const change = this.differ?.diff(this);
+    if (change) {
+      change.forEachChangedItem((item) => {
+        if (item.key.includes('pointInput')) {
+          this.controlPoints.push(this.pointInput);
+        } else if (item.key.includes('polygonInput')) {
+          this.polygonPoints.push(this.polygonInput);
+        }
+      });
+    }
   }
 
   private getPlaguePlot(): void {
@@ -81,31 +90,76 @@ export class PointsComponent implements OnInit {
       )
       .then((result) => {
         if (result.isConfirmed) {
-          this.controlPoints.splice(id,1);
-          this.saveStorage();
-          this.chargeStorage();
+          this.controlPoints.splice(id, 1);
         }
       });
   }
 
   public async savePoints() {
-    this.saveSuccess();
-    this.modalService.singleModal(
-      'Guardado con éxito',
-      'Aceptar',
-      this.modalService.MODALTYPE.success
-    );
-    this.saveStorage();
-    this.chargeStorage();
+    this.modalService
+      .questionModal(
+        'Guardar puntos de control' + '¿Desea continuar?',
+        'Aceptar',
+        'Cancelar',
+        this.modalService.MODALTYPE.info
+      )
+      .then((result) => {
+        if (result.isConfirmed) {
+          this.setSave();
+        }
+      });
+  }
+
+  private setSave(): void {
+    this.changeData(this.controlPoints, this.polygonPoints);
+    this.plaguePlotService.sendPointstoSpectral(this.data).subscribe({
+      next: (response) => this.saveSuccess(),
+      error: (error) => this.saveError(error),
+    });
+  }
+
+  public changeData(
+    controlPoints: PointsInterface[],
+    polygonPoints: PointsInterface[]
+  ) {
+    this.data.id = this.plaguePlot.id;
+    controlPoints.forEach((element) => {
+      this.data.controlCoord.push([element.lat, element.lng]);
+    });
+    polygonPoints.forEach((element) => {
+      this.data.polygonCoord.push([element.lat, element.lng]);
+    });
   }
 
   public saveSuccess() {
     this.plaguePlotService.getPlaguePlotToSign();
+    this.modalService.singleModal(
+      'Guardado con éxito',
+      'ok',
+      this.modalService.MODALTYPE.success
+    );
+    this.deleteData();
+  }
+
+  private saveError(error: string) {
+    this.plaguePlotService.getPlaguePlotToSign();
+    this.modalService.singleModal(
+      error,
+      'ok',
+      this.modalService.MODALTYPE.danger
+    );
+    this.deleteData();
+  }
+
+  public deleteData() {
+    this.data.id = 0;
+    this.data.controlCoord = [];
+    this.data.polygonCoord = [];
     this.controlPoints = [];
     this.polygonPoints = [];
   }
 
-  async discardPoint() {
+  public async discardPoint() {
     await this.modalService
       .modalWithInput(
         'Descarte de poligono',
@@ -124,7 +178,7 @@ export class PointsComponent implements OnInit {
       id: this.plaguePlot.id,
       observation: result,
     };
-    this.discardLoading();
+    this.modalService.loading('cargando');
     this.plaguePlotService.setDiscardController(observation).subscribe({
       next: (response) => this.discartedSucess(),
       error: (error) => this.discartedError(error),
@@ -147,9 +201,5 @@ export class PointsComponent implements OnInit {
       'ok',
       this.modalService.MODALTYPE.danger
     );
-  }
-
-  private discardLoading() {
-    this.modalService.loading('cargando');
   }
 }
