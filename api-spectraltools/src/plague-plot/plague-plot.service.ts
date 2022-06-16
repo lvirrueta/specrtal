@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PlaguePlotEntity } from 'src/entities/plaguePlot.entity';
-import { FindOperator, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class PlaguePlotService {
