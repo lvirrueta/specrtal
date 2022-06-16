@@ -70,7 +70,6 @@ export class AuthService {
         },
       ],
     });
-    // console.log(USER_DB);
     return USER_DB;
   }
 }
