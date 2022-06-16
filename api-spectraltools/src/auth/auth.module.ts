@@ -12,7 +12,7 @@ import { JwtStrategy } from './JWT/jwt.strategy';
     JwtModule.register({
       secret: 'super-secreto',
       signOptions: {
-        expiresIn: 3600,
+        expiresIn: 43200,
       },
     }),
     TypeOrmModule.forFeature([UserEntity]),

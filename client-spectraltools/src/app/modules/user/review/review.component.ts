@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlaguePlotService } from 'src/app/core/services/plaguePlot.service';
+import { PointsInterface } from '../interfaces/pointsInfo.interface';
 
 @Component({
   selector: 'app-review',
@@ -9,14 +10,16 @@ import { PlaguePlotService } from 'src/app/core/services/plaguePlot.service';
 export class ReviewComponent implements OnInit {
   constructor(private plaguePlotService: PlaguePlotService) {}
 
-  polygon: boolean = true;
-  nombre: string = '';
+  point: PointsInterface = {
+    lat: 0,
+    lng: 0,
+  };
+  polygon: PointsInterface = {
+    lat: 0,
+    lng: 0,
+  };
 
   ngOnInit(): void {
     this.plaguePlotService.getPlaguePlotToSign();
-  }
-
-  cambiarNombre(){
-    this.nombre = 'Lucero';
   }
 }

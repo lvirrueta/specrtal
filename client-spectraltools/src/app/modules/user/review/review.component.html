@@ -2,12 +2,6 @@
     <b class="roboto-font-0 font-color-main">
         Sistema de Análisis y caracterización
     </b>
-    <b>
-        {{ nombre }}
-    </b>
-    <button (click)="cambiarNombre()">
-        boton
-    </button>
 </div>
 
 <div class="row">
@@ -20,14 +14,14 @@
 
     <!-- Satellital -->
     <div class="sat-container col-12 py-3 ps-3">
-        <app-satellital></app-satellital>
+        <app-satellital (pointOutput)="point = $event" (polygonOutput)="polygon = $event"></app-satellital>
     </div>
     <!-- END Satellital -->
 
 
     <!-- Points -->
     <div class="col-12 py-3 ps-3">
-        <app-points [nombreHijo]="nombre" (cNombreHijo)="nombre = $event"></app-points>
+        <app-points [pointInput]="point" [polygonInput]="polygon"></app-points>
     </div>
     <!-- END Points -->
 </div>

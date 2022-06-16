@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { IPlaguePlot } from '../../core/models/IPlaguePlot';
 import { DiscardDTO } from '../models/discardDTO';
+import { ICoordinatesSpectral } from '../models/ICoordinatesSpectral';
 
 @Injectable({
   providedIn: 'root',
@@ -49,5 +50,9 @@ export class PlaguePlotService {
       next: (response: IPlaguePlot) => this.setPlaguePlot(response),
       error: (error) => error,
     });
+  }
+
+  public sendPointstoSpectral(data: ICoordinatesSpectral) {
+    return this.http.post(`${this.url}/spectral/spectral`, data);
   }
 }
