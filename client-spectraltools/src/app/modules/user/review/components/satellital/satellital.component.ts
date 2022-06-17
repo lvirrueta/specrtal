@@ -135,7 +135,7 @@ export class SatellitalComponent implements OnInit {
 
   /*********** Connections **********/
   private getPlaguePlot(): void {
-    this.modalsService.loading('Cargando');
+    this.modalsService.loadingModal('Cargando');
     this.plaguePlotService.getPlaguePlot().subscribe({
       next: (response) => {
         this.plaguePlot = response;
