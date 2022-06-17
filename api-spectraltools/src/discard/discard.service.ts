@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ObservationEntity } from 'src/entities/observation.entity';
-import { PlaguePlotEntity } from 'src/entities/plaguePlot.entity';
+import { ObservationEntity } from '../entities/observation.entity';
+import { PlaguePlotEntity } from '../entities/plaguePlot.entity';
 import { Repository } from 'typeorm';
 import { ObservationDTO } from './common/dto/discard.dto';
 
