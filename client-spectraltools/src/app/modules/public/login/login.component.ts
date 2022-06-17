@@ -82,7 +82,7 @@ export class LoginComponent implements OnInit {
   }
   // ------------ Conections ------------ //
   private loginRequest(): void {
-    this.modalsService.loading('Cargando');
+    this.modalsService.loadingModal('Cargando');
     const BODY: LoginDTO = {
       email: this.loginEmailControl.value,
       password: this.loginPasswordControl.value,

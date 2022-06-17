@@ -21,7 +21,7 @@ export class DiscarderedComponent implements OnInit {
   }
 
   private discardRequest(): void {
-    this.modalsService.loading('Cargando');
+    this.modalsService.loadingModal('Cargando');
     // TODO - Add request
     this.plaguePlotService.getDiscardedListController().subscribe({
       next: (response) => {
@@ -47,7 +47,7 @@ export class DiscarderedComponent implements OnInit {
         `Descripción: ${observation}`,
         'Volver a evaluar',
         'Eliminar',
-        this.modalsService.MODALTYPE.info
+        this.modalsService.MODALTYPE.main
       )
       .then((result) => {
         if (result.isConfirmed) {
@@ -60,7 +60,7 @@ export class DiscarderedComponent implements OnInit {
   }
 
   private deletePointCluster(id: number): void {
-    this.modalsService.loading('cargando');
+    this.modalsService.loadingModal('cargando');
     this.plaguePlotService.deleteDiscardController(id).subscribe({
       next: () => {
         this.modalsService.close();
@@ -74,7 +74,7 @@ export class DiscarderedComponent implements OnInit {
   }
 
   private evaluePointCluster(id: number): void {
-    this.modalsService.loading('cargando');
+    this.modalsService.loadingModal('cargando');
     this.plaguePlotService.updateDiscardedPointController(id).subscribe({
       next: () => {
         this.modalsService.close();

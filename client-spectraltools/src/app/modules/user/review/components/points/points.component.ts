@@ -72,7 +72,7 @@ export class PointsComponent implements OnInit, DoCheck {
   }
 
   private pointsRequest(): void {
-    this.modalService.loading('Cargando');
+    this.modalService.loadingModal('Cargando');
     this.pointsRequestSuccess();
   }
 
@@ -101,7 +101,7 @@ export class PointsComponent implements OnInit, DoCheck {
         'Guardar puntos de control' + '¿Desea continuar?',
         'Aceptar',
         'Cancelar',
-        this.modalService.MODALTYPE.info
+        this.modalService.MODALTYPE.main
       )
       .then((result) => {
         if (result.isConfirmed) {
@@ -112,6 +112,7 @@ export class PointsComponent implements OnInit, DoCheck {
 
   private setSave(): void {
     this.changeData(this.controlPoints, this.polygonPoints);
+    this.modalService.loadingModal('cargando');
     this.plaguePlotService.sendPointstoSpectral(this.data).subscribe({
       next: (response) => this.saveSuccess(),
       error: (error) => this.saveError(error),
@@ -123,6 +124,7 @@ export class PointsComponent implements OnInit, DoCheck {
     polygonPoints: PointsInterface[]
   ) {
     this.data.id = this.plaguePlot.id;
+
     controlPoints.forEach((element) => {
       this.data.controlCoord.push([element.lat, element.lng]);
     });
@@ -131,13 +133,14 @@ export class PointsComponent implements OnInit, DoCheck {
     });
   }
 
-  public saveSuccess() {
+  private saveSuccess() {
     this.plaguePlotService.getPlaguePlotToSign();
     this.modalService.singleModal(
       'Guardado con éxito',
       'ok',
       this.modalService.MODALTYPE.success
     );
+    this.modalService.close();
     this.deleteData();
   }
 
@@ -178,7 +181,7 @@ export class PointsComponent implements OnInit, DoCheck {
       id: this.plaguePlot.id,
       observation: result,
     };
-    this.modalService.loading('cargando');
+    this.modalService.loadingModal('cargando');
     this.plaguePlotService.setDiscardController(observation).subscribe({
       next: (response) => this.discartedSucess(),
       error: (error) => this.discartedError(error),
@@ -187,6 +190,7 @@ export class PointsComponent implements OnInit, DoCheck {
 
   private discartedSucess() {
     this.plaguePlotService.getPlaguePlotToSign();
+    this.deleteData();
     this.modalService.singleModal(
       'se descarto',
       'ok',
