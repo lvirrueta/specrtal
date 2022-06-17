@@ -4,6 +4,7 @@ import { ObservationEntity } from '../entities/observation.entity';
 import { PlaguePlotEntity } from '../entities/plaguePlot.entity';
 import { Repository } from 'typeorm';
 import { DiscardService } from './discard.service';
+import { ObservationDTO } from './common/dto/discard.dto';
 
 describe('DiscardService', () => {
   let service: DiscardService;
@@ -19,7 +20,27 @@ describe('DiscardService', () => {
           useValue: {
             findOne: jest.fn().mockImplementation(() => {
               return {
-                hola: 'ass',
+                id: 7,
+                plagueLocation: {
+                  x: 19.89423,
+                  y: -101.37662,
+                },
+                sampleDate: '2021-07-19T05:00:00.000Z',
+                phenologicalStage: 'DESARROLLO VEGETATIVO',
+                damagePercentage: 18,
+                cropMonthAge: 7,
+                cropWeekAge: 29,
+                plagueSign: null,
+                phenologicalSign: null,
+                plaguePixel: null,
+                controlPixel: null,
+                discart: false,
+              };
+            }),
+            save: jest.fn().mockImplementation(() => {
+              return {
+                id: 7,
+                discart: true,
               };
             }),
           },
@@ -52,6 +73,13 @@ describe('DiscardService', () => {
                 },
               ];
             }),
+            save: jest.fn().mockImplementation(() => {
+              return {
+                observation: 'muchas nubes',
+                plagePlotID: 7,
+                id: 87,
+              };
+            }),
           },
         },
       ],
@@ -74,7 +102,7 @@ describe('DiscardService', () => {
     expect(observationRepository).toBeDefined();
   });
 
-  it('should be defined', () => {
+  it('service should be defined', () => {
     expect(service).toBeDefined();
   });
 
@@ -102,5 +130,13 @@ describe('DiscardService', () => {
         },
       },
     ]);
+  });
+
+  it('should add description', async () => {
+    const observation: ObservationDTO = {
+      id: 7,
+      observation: 'muchas nubes',
+    };
+    expect(await service.discard(observation)).toEqual(true);
   });
 });

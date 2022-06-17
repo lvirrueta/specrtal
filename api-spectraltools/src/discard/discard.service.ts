@@ -63,11 +63,16 @@ export class DiscardService {
     observation: ObservationDTO,
   ): Promise<boolean> {
     plague.discart = true;
-    await this.plaguePlotRepository.save({ id: plague.id, discart: true });
+    const plagueSave = await this.plaguePlotRepository.save({
+      id: plague.id,
+      discart: true,
+    });
+    console.log(plagueSave);
     const RESP = await this.observationRepository.save({
       observation: observation.observation,
       plagePlotID: observation.id,
     });
+    console.log(RESP);
     if (RESP) {
       return true;
     } else {
