@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ObservationEntity } from 'src/entities/observation.entity';
-import { PlaguePlotEntity } from 'src/entities/plaguePlot.entity';
+import { ObservationEntity } from '../entities/observation.entity';
+import { PlaguePlotEntity } from '../entities/plaguePlot.entity';
 import { Repository } from 'typeorm';
 import { ObservationDTO } from './common/dto/discard.dto';
 
@@ -63,11 +63,16 @@ export class DiscardService {
     observation: ObservationDTO,
   ): Promise<boolean> {
     plague.discart = true;
-    await this.plaguePlotRepository.save({ id: plague.id, discart: true });
+    const plagueSave = await this.plaguePlotRepository.save({
+      id: plague.id,
+      discart: true,
+    });
+    console.log(plagueSave);
     const RESP = await this.observationRepository.save({
       observation: observation.observation,
       plagePlotID: observation.id,
     });
+    console.log(RESP);
     if (RESP) {
       return true;
     } else {
