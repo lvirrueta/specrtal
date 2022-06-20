@@ -25,6 +25,7 @@ import { DiscardService } from './discard.service';
 @Controller('discard')
 export class DiscardController {
   constructor(private discardService: DiscardService) {}
+
   @ApiOperation({
     summary: 'Descarta los puntos',
   })
@@ -52,6 +53,7 @@ export class DiscardController {
   async discardList() {
     return await this.discardService.discardList();
   }
+
   @ApiOperation({
     summary: 'Actualiza los puntos descartados',
   })
@@ -65,6 +67,7 @@ export class DiscardController {
   async updateDiscardPoint(@Param('id') id: number) {
     return await this.discardService.updateDiscardPoint(id);
   }
+
   @ApiOperation({
     summary: 'Elimina punto descartado',
   })
