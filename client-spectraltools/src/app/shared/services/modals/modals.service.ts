@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ScssConectionService } from '../scss-conection.service';
 import Swal, { SweetAlertResult } from 'sweetalert2';
 
 @Injectable({
@@ -40,7 +41,9 @@ export class ModalsService {
     },
   };
 
-  constructor() {}
+  constructor(
+    private scssConectionService: ScssConectionService,
+  ) {}
 
   public discardOptionModal(
     title: string,
@@ -132,6 +135,7 @@ export class ModalsService {
       reverseButtons: true,
       showCloseButton: true,
       focusConfirm: true,
+      confirmButtonColor: this.scssConectionService.getColorStyles(modalType.buttonColor),
     });
   }
 
@@ -219,8 +223,8 @@ export class ModalsService {
       showCloseButton: true,
       showCancelButton: false,
       focusConfirm: true,
+      confirmButtonColor: this.scssConectionService.getColorStyles(modalType.buttonColor),
       confirmButtonText: `<span class="roboto-font-5">${confirmLabel}</span>`,
-      // ConfirmButtonColor: this.scssConectionService.getColorFromStyles(modalType.buttonColor),
     });
   }
 
@@ -308,50 +312,12 @@ export class ModalsService {
       showCloseButton: true,
       showCancelButton: true,
       focusConfirm: true,
-      confirmButtonText: `
-        <span class="roboto-font-5">${confirmLabel}</span>
-      `,
-      // ConfirmButtonColor: this.scssConectionService.getColorFromStyles(modalType.buttonColor),
+      confirmButtonText: `<span class="roboto-font-5">${confirmLabel}</span>`,
+      confirmButtonColor: this.scssConectionService.getColorStyles(modalType.buttonColor),
       denyButtonText: `<span class="roboto-font-5">&nbsp;&nbsp;${cancelLabel}&nbsp;&nbsp;</span>`,
     });
   }
-
-  // Image modal
-  public image(url: string): void {
-    this.pendingLogins = 0;
-    Swal.close();
-    Swal.fire({
-      html: `
-        <!-- Contenedor del html para la modal -->
-        <div class="container-fluid">
-
-
-          <!-- Cuerpo de la modal -->
-            <div class="row">
-              <div class="col-12 p-0 text-center">
-                <img src="${url}"
-                     alt="image"
-                     class="img-fluid">
-              </div>
-            </div>
-          <!-- FIN Cuerpo de la modal -->
-
-
-        </div>
-        <!-- FIN Contenedor del html para la modal -->
-      `,
-      customClass: {
-        popup: 'swal-popup-general',
-      },
-      allowOutsideClick: true,
-      backdrop: true,
-      allowEscapeKey: true,
-      showCloseButton: true,
-      showCancelButton: false,
-      showConfirmButton: false,
-    });
-  }
-
+  
   public modalWithInput(
     title: string,
     text: string,
@@ -396,7 +362,7 @@ export class ModalsService {
   }
 
   // Loading modal
-  public loading(text: string): void {
+  public loadingModal(text: string): void {
     this.pendingLogins++;
     Swal.fire({
       html: `
@@ -469,7 +435,7 @@ export class ModalsService {
       showCloseButton: false,
       showCancelButton: false,
       showConfirmButton: false,
-      // ConfirmButtonColor: this.scssConectionService.getColorFromStyles('--color-info2')
+      confirmButtonColor: this.scssConectionService.getColorStyles('--color-info2')
     });
     Swal.showLoading();
   }
