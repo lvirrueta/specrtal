@@ -43,4 +43,18 @@ export class PlaguePlotController {
   getInfoPlot() {
     return this.plaguePlotServie.getInfoPlot();
   }
+
+  @ApiOperation({
+    summary: 'Obtiene informacion de los datos a analizar',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Si todo sale bien regresa informacion de los datos',
+    isArray: false,
+    type: CPlagePlotData,
+  })
+  @Get('getProccesByProduct')
+  getProcessByProduct() {
+    return this.plaguePlotServie.getProcessByProduct();
+  }
 }

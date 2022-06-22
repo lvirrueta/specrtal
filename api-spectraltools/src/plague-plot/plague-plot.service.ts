@@ -46,4 +46,13 @@ export class PlaguePlotService {
     plaguePlotData.analized = analized;
     return plaguePlotData;
   }
+
+  async getProcessByProduct() {
+    const a = await this.plaguePlotRepository.find({
+      relations: ['varietyProductID.agriculturalProductID', 'plagueID'],
+      where: [{ discart: false }],
+    });
+
+    return a;
+  }
 }
