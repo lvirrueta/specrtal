@@ -53,6 +53,15 @@ export class PlaguePlotService {
       where: [{ discart: false }],
     });
 
-    return a;
+    a.sort(function (a, b) {
+      return (
+        a.varietyProductID['agriculturalProductID']['id'] -
+        b.varietyProductID['agriculturalProductID']['id']
+      );
+    });
+    // return a
+    return a.map(
+      (a) => a.varietyProductID['agriculturalProductID']['commonNames'],
+    );
   }
 }

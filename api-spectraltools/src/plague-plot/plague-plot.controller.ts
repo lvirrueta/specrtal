@@ -11,7 +11,7 @@ import { CPlagePlotData } from './common/class/plaguePlotData.class';
 import { PlaguePlotService } from './plague-plot.service';
 
 @ApiBearerAuth()
-@UseGuards(AuthGuard('jwt'))
+// @UseGuards(AuthGuard('jwt'))
 @ApiTags('plaguePlot')
 @Controller('plague-plot')
 export class PlaguePlotController {
