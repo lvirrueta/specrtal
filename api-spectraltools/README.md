@@ -34,7 +34,12 @@ $ npm install
 
 ## Running the app
 
+you will need a env file!
+
 ```bash
+# install dependecies
+$ npm install
+
 # development
 $ npm run start
 
@@ -45,7 +50,6 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-you will need a env file!
 
 ## Test
 
