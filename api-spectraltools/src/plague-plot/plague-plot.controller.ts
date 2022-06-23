@@ -7,10 +7,11 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { CPlagePlotID } from './common/class/plaguePlot.class';
+import { CPlagePlotData } from './common/class/plaguePlotData.class';
 import { PlaguePlotService } from './plague-plot.service';
 
 @ApiBearerAuth()
-@UseGuards(AuthGuard('jwt'))
+// @UseGuards(AuthGuard('jwt'))
 @ApiTags('plaguePlot')
 @Controller('plague-plot')
 export class PlaguePlotController {
@@ -27,5 +28,33 @@ export class PlaguePlotController {
   @Get('toSign')
   login() {
     return this.plaguePlotServie.getOnePlaguePlot();
+  }
+
+  @ApiOperation({
+    summary: 'Obtiene informacion de los datos a analizar',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Si todo sale bien regresa informacion de los datos',
+    isArray: false,
+    type: CPlagePlotData,
+  })
+  @Get('getInfoPlot')
+  getInfoPlot() {
+    return this.plaguePlotServie.getInfoPlot();
+  }
+
+  @ApiOperation({
+    summary: 'Obtiene informacion de los datos a analizar',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Si todo sale bien regresa informacion de los datos',
+    isArray: false,
+    type: CPlagePlotData,
+  })
+  @Get('getProccesByProduct')
+  getProcessByProduct() {
+    return this.plaguePlotServie.getProcessByProduct();
   }
 }

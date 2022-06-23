@@ -15,7 +15,7 @@ import { MainComponent } from '../main/main.component';
 import { SatellitalComponent } from '../review/components/satellital/satellital.component';
 import { PointsComponent } from '../review/components/points/points.component';
 import { InfoComponent } from '../review/components/info/info.component';
-
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,8 @@ import { InfoComponent } from '../review/components/info/info.component';
   ],
   imports: [
     CommonModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    NgChartsModule
   ]
 })
 export class HomeModule { }

@@ -14,6 +14,10 @@ export class PlaguePlotService {
 
   constructor(private http: HttpClient) {}
 
+  public getInfoPlot(){
+    return this.http.get(`${this.url}/plague-plot/getInfoPlot`);
+  }
+
   public deleteDiscardController(id: number): Observable<any> {
     return this.http.delete(`${this.url}/discard/delete-discard-point/${id}`);
   }
